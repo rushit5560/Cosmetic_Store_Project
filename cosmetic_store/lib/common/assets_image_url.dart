@@ -1,0 +1,43 @@
+class AssetsImageUrl {
+  static const mainpath = 'assets/images/';
+
+  static const splash = mainpath + 'splash.jpg';
+  static const service1 = mainpath + 'service1.png';
+  static const service2 = mainpath + 'service2.png';
+  static const service3 = mainpath + 'service3.png';
+  static const profile = mainpath + 'profile.png';
+  static const category1 = mainpath + 'category1.png';
+  static const category2 = mainpath + 'category2.png';
+  static const category3 = mainpath + 'category3.png';
+  static const category4 = mainpath + 'category4.png';
+  static const category5 = mainpath + 'category5.png';
+  static const category6 = mainpath + 'category6.png';
+  static const category7 = mainpath + 'category7.png';
+  static const category8 = mainpath + 'category8.png';
+  static const category9 = mainpath + 'category9.png';
+  static const category10 = mainpath + 'category10.png';
+  static const category11 = mainpath + 'category11.png';
+  static const category12 = mainpath + 'category12.png';
+  static const collection1 = mainpath + 'collection1.png';
+  static const collection2 = mainpath + 'collection2.png';
+  static const collection3 = mainpath + 'collection3.png';
+  static const collection4 = mainpath + 'collection4.png';
+  static const collection5 = mainpath + 'collection5.png';
+  static const collection6 = mainpath + 'collection6.png';
+  static const collection7 = mainpath + 'collection7.png';
+  static const collection8 = mainpath + 'collection8.png';
+  static const paypal = mainpath + 'paypal.png';
+  static const visa = mainpath + 'visa.png';
+  static const mastercard = mainpath + 'mastercard.png';
+  static const card = mainpath + 'card.png';
+  static const confirmation = mainpath + 'confirmation.png';
+  static const banner1 = mainpath + 'banner1.png';
+  static const banner2 = mainpath + 'banner2.png';
+  static const banner3 = mainpath + 'banner3.png';
+  static const noti1 = mainpath + 'noti1.png';
+  static const noti2 = mainpath + 'noti2.png';
+  static const logo = mainpath + 'logo.png';
+  static const google = mainpath + 'google.png';
+  static const facebook = mainpath + 'facebook.png';
+  static const twitter = mainpath + 'twitter.png';
+}
