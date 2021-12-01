@@ -1,3 +1,4 @@
+import 'package:cosmetic_store/screens/signin_screen/signin_screen.dart';
 import 'package:cosmetic_store/screens/signup_screen/signup_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -19,13 +20,14 @@ class SignInImage extends StatelessWidget {
   }
 }
 
-class SignInText extends StatelessWidget {
-  const SignInText({Key? key}) : super(key: key);
+class SignInAndSignUpHeader extends StatelessWidget {
+  String text;
+  SignInAndSignUpHeader({required this.text});
 
   @override
   Widget build(BuildContext context) {
     return Text(
-      "Sign In",
+      "$text",
       style: TextStyle(
         color: AppColors.kTometoColor,
         fontSize: 25,
@@ -48,35 +50,61 @@ InputDecoration inputDecoration(String hintText) {
   );
 }
 
-class SignUpText extends StatelessWidget {
-  const SignUpText({Key? key}) : super(key: key);
+class SignInAndSignUpText extends StatelessWidget {
+  int index;
+  SignInAndSignUpText({required this.index});
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Text(
-            'have Not Account?',
-            style: TextStyle(color: Colors.black, fontSize: 17),
-          ),
-          SizedBox(width: 10),
-          GestureDetector(
-            onTap: () {
-              Get.off(() => SignUpScreen());
-            },
-            child: Text(
-              'Sign Up',
-              style: TextStyle(
-                  color: AppColors.kTometoColor,
-                  fontSize: 17,
-                  decoration: TextDecoration.underline),
+    return index == 0
+        ? Container(
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text(
+                  'have Not Account?',
+                  style: TextStyle(color: Colors.black, fontSize: 17),
+                ),
+                SizedBox(width: 10),
+                GestureDetector(
+                  onTap: () {
+                    Get.off(() => SignUpScreen());
+                  },
+                  child: Text(
+                    'Sign Up',
+                    style: TextStyle(
+                        color: AppColors.kTometoColor,
+                        fontSize: 17,
+                        decoration: TextDecoration.underline),
+                  ),
+                ),
+              ],
             ),
-          ),
-        ],
-      ),
-    );
+          )
+        : Container(
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text(
+                  'Already Account?',
+                  style: TextStyle(color: Colors.black, fontSize: 17),
+                ),
+                SizedBox(width: 10),
+                GestureDetector(
+                  onTap: () {
+                    Get.off(() => SignInScreen());
+                  },
+                  child: Text(
+                    'Sign In',
+                    style: TextStyle(
+                        color: AppColors.kTometoColor,
+                        fontSize: 17,
+                        decoration: TextDecoration.underline),
+                  ),
+                ),
+              ],
+            ),
+          );
   }
 }
 

@@ -1,10 +1,12 @@
-import 'package:cosmetic_store/common/app_images.dart';
 import 'package:cosmetic_store/common/app_color.dart';
-import 'package:cosmetic_store/screens/signin_screen/signin_screen.dart';
+import 'package:cosmetic_store/common/common_widgets.dart';
+import 'package:cosmetic_store/controllers/sign_up_screen_controller/sign_up_screen_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class SignUpScreen extends StatelessWidget {
+  SignUpScreenController signUpScreenController = Get.put(SignUpScreenController());
+
   GlobalKey<FormState> formKey = GlobalKey<FormState>();
   TextEditingController usernameController = TextEditingController();
   TextEditingController emailController = TextEditingController();
@@ -13,70 +15,51 @@ class SignUpScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(
-        child: SingleChildScrollView(
-          child: Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Column(
-              children: [
-
-                signUpImage(),
-                SizedBox(height: 30),
-
-                signUpText(),
-                SizedBox(height: 20),
-
-                Form(
-                  key: formKey,
-                  child: Column(
-                    children: [
-                      userNameField(),
-                      SizedBox(height: 10),
-                      emailIdField(),
-                      SizedBox(height: 10),
-                      passwordField(),
-                      SizedBox(height: 10),
-                    ],
+      body: Obx(
+        () => signUpScreenController.isLoading.value
+            ? CustomCircularProgressIndicator()
+            : Center(
+                child: SingleChildScrollView(
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Column(
+                      children: [
+                        // Import From Common Widgets
+                        SignInImage(),
+                        SizedBox(height: 30),
+                        // Import From Common Widgets
+                        SignInAndSignUpHeader(text: "Sign Up"),
+                        SizedBox(height: 20),
+                        Form(
+                          key: formKey,
+                          child: Column(
+                            children: [
+                              userNameField(),
+                              SizedBox(height: 10),
+                              emailIdField(),
+                              SizedBox(height: 10),
+                              passwordField(),
+                              SizedBox(height: 10),
+                            ],
+                          ),
+                        ),
+                        SizedBox(height: 10),
+                        signUpButton(),
+                        SizedBox(height: 30),
+                        // Import From Common Widgets
+                        SignInAndSignUpText(index: 1),
+                        SizedBox(height: 20),
+                        // Import From Common Widgets
+                        OrText(),
+                        SizedBox(height: 25),
+                        // Import From Common Widgets
+                        SocialButtons(),
+                      ],
+                    ),
                   ),
                 ),
-                SizedBox(height: 10),
-
-                signUpButton(),
-                SizedBox(height: 30),
-
-                signInText(),
-                SizedBox(height: 20),
-
-                orText(),
-                SizedBox(height: 25),
-
-                socialButton(),
-              ],
-            ),
-          ),
-        ),
+              ),
       ),
-    );
-  }
-
-  Widget signUpImage() {
-    return Container(
-      width: Get.width * 0.50, height: 75,
-      child: Image(
-        image: AssetImage(AppImages.logo),
-      ),
-    );
-  }
-
-  Widget signUpText() {
-    return Text(
-      "Sign Up",
-      style: TextStyle(
-        color: AppColors.kTometoColor,
-        fontSize: 25,
-        fontWeight: FontWeight.bold,
-      ),
-      // textScaleFactor: 1.5,
     );
   }
 
@@ -84,15 +67,7 @@ class SignUpScreen extends StatelessWidget {
     return Container(
       padding: EdgeInsets.symmetric(horizontal: 15),
       child: TextFormField(
-        decoration: InputDecoration(
-          hintText: "UserName",
-          isDense: true,
-          contentPadding: EdgeInsets.symmetric(horizontal: 20, vertical: 15),
-          border: OutlineInputBorder(borderRadius: BorderRadius.circular(25)),
-          focusedBorder: OutlineInputBorder(
-              borderSide: BorderSide(color: Colors.orangeAccent),
-              borderRadius: BorderRadius.circular(25)),
-        ),
+        decoration: inputDecoration('UserName'),
         controller: usernameController,
         validator: (value) {
           if (value!.isEmpty) {
@@ -109,15 +84,7 @@ class SignUpScreen extends StatelessWidget {
     return Container(
       padding: EdgeInsets.symmetric(horizontal: 15),
       child: TextFormField(
-        decoration: InputDecoration(
-          hintText: "Email Id",
-          isDense: true,
-          contentPadding: EdgeInsets.symmetric(horizontal: 20, vertical: 15),
-          border: OutlineInputBorder(borderRadius: BorderRadius.circular(25)),
-          focusedBorder: OutlineInputBorder(
-              borderSide: BorderSide(color: Colors.orangeAccent),
-              borderRadius: BorderRadius.circular(25)),
-        ),
+        decoration: inputDecoration('Email Id'),
         controller: emailController,
         validator: (value) {
           if (value!.isEmpty) {
@@ -135,15 +102,7 @@ class SignUpScreen extends StatelessWidget {
       padding: EdgeInsets.symmetric(horizontal: 15),
       child: TextFormField(
         obscureText: true,
-        decoration: InputDecoration(
-          hintText: "Password",
-          isDense: true,
-          contentPadding: EdgeInsets.symmetric(horizontal: 20, vertical: 15),
-          border: OutlineInputBorder(borderRadius: BorderRadius.circular(25)),
-          focusedBorder: OutlineInputBorder(
-              borderSide: BorderSide(color: Colors.orangeAccent),
-              borderRadius: BorderRadius.circular(25)),
-        ),
+        decoration: inputDecoration('Password'),
         controller: passwordController,
         validator: (value) {
           if (value!.isEmpty) {
@@ -155,13 +114,16 @@ class SignUpScreen extends StatelessWidget {
   }
 
   Widget signUpButton() {
-
     return Container(
       padding: EdgeInsets.symmetric(horizontal: 15),
       child: GestureDetector(
         onTap: () {
           if (formKey.currentState!.validate()) {
-            print('Inside formkey');
+            signUpScreenController.getRegisterData(
+              '${usernameController.text.trim()}',
+              '${emailController.text.trim().toLowerCase()}',
+              '${passwordController.text.trim()}',
+            );
           }
         },
         child: Container(
@@ -171,109 +133,17 @@ class SignUpScreen extends StatelessWidget {
               borderRadius: BorderRadius.circular(25)),
           child: Center(
               child: Padding(
-                padding: const EdgeInsets.symmetric(vertical: 15),
-                child: Text(
-                  'Sign Up',
-                  style: TextStyle(
-                      color: Colors.white,
-                      fontWeight: FontWeight.bold,
-                      fontSize: 15),
-                ),
-              )),
-        ),
-      ),
-    );
-  }
-
-  Widget signInText() {
-    return Container(
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Text(
-            'Already Account?',
-            style: TextStyle(color: Colors.black, fontSize: 17),
-          ),
-          SizedBox(width: 10),
-          GestureDetector(
-            onTap: () {
-               Get.off(()=> SignInScreen());
-            },
+            padding: const EdgeInsets.symmetric(vertical: 15),
             child: Text(
-              'Sign In',
+              'Sign Up',
               style: TextStyle(
-                  color: AppColors.kTometoColor,
-                  fontSize: 17,
-                  decoration: TextDecoration.underline),
+                  color: Colors.white,
+                  fontWeight: FontWeight.bold,
+                  fontSize: 15),
             ),
-          ),
-        ],
+          )),
+        ),
       ),
-    );
-  }
-
-  Widget orText() {
-    return Container(
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Expanded(
-              child: Divider(
-                thickness: 1,
-                color: Colors.black,
-                endIndent: 15,
-                indent: 40,
-              )),
-          Text(
-            'OR',
-            style: TextStyle(color: AppColors.kTometoColor, fontSize: 17),
-          ),
-          Expanded(
-              child: Divider(
-                thickness: 1,
-                color: Colors.black,
-                indent: 15,
-                endIndent: 40,
-              )),
-        ],
-      ),
-    );
-  }
-
-  Widget socialButton() {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        GestureDetector(
-          onTap: () {print('Clicked On Facebook');},
-          child: Image.asset(
-            'assets/images/facebook.png',
-            fit: BoxFit.cover,
-            width: 50,
-            height: 50,
-          ),
-        ),
-        SizedBox(width: 10),
-        GestureDetector(
-          onTap: () {print('Clicked On Twitter');},
-          child: Image.asset(
-            'assets/images/twitter.png',
-            fit: BoxFit.cover,
-            width: 50,
-            height: 50,
-          ),
-        ),
-        SizedBox(width: 10),
-        GestureDetector(
-          onTap: () {print('Clicked On Google');},
-          child: Image.asset(
-            'assets/images/google.png',
-            fit: BoxFit.cover,
-            width: 50,
-            height: 50,
-          ),
-        ),
-      ],
     );
   }
 }

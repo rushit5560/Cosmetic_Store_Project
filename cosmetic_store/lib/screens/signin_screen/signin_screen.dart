@@ -28,7 +28,7 @@ class SignInScreen extends StatelessWidget {
                       children: [
                         SignInImage(), // Import From Common Widgets
                         SizedBox(height: 30),
-                        SignInText(), // Import From Common Widgets
+                        SignInAndSignUpHeader(text: "Sign In"), // Import From Common Widgets
                         SizedBox(height: 20),
                         Form(
                           key: formKey,
@@ -46,7 +46,7 @@ class SignInScreen extends StatelessWidget {
                         SizedBox(height: 10),
                         loginButton(),
                         SizedBox(height: 30),
-                        SignUpText(), // Import From Common Widgets
+                        SignInAndSignUpText(index: 0), // Import From Common Widgets
                         SizedBox(height: 20),
                         OrText(), // Import From Common Widgets
                         SizedBox(height: 25),
