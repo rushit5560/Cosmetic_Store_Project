@@ -1,5 +1,5 @@
-import 'package:cosmetic_store/common/assets_image_url.dart';
-import 'package:cosmetic_store/common/custom_color.dart';
+import 'package:cosmetic_store/common/app_images.dart';
+import 'package:cosmetic_store/common/app_color.dart';
 import 'package:cosmetic_store/screens/signin_screen/signin_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -63,7 +63,7 @@ class SignUpScreen extends StatelessWidget {
     return Container(
       width: Get.width * 0.50, height: 75,
       child: Image(
-        image: AssetImage(AssetsImageUrl.logo),
+        image: AssetImage(AppImages.logo),
       ),
     );
   }
@@ -72,7 +72,7 @@ class SignUpScreen extends StatelessWidget {
     return Text(
       "Sign Up",
       style: TextStyle(
-        color: CustomColor.kTometoColor,
+        color: AppColors.kTometoColor,
         fontSize: 25,
         fontWeight: FontWeight.bold,
       ),
@@ -167,7 +167,7 @@ class SignUpScreen extends StatelessWidget {
         child: Container(
           width: Get.width,
           decoration: BoxDecoration(
-              color: CustomColor.kTometoColor,
+              color: AppColors.kTometoColor,
               borderRadius: BorderRadius.circular(25)),
           child: Center(
               child: Padding(
@@ -202,7 +202,7 @@ class SignUpScreen extends StatelessWidget {
             child: Text(
               'Sign In',
               style: TextStyle(
-                  color: CustomColor.kTometoColor,
+                  color: AppColors.kTometoColor,
                   fontSize: 17,
                   decoration: TextDecoration.underline),
             ),
@@ -226,7 +226,7 @@ class SignUpScreen extends StatelessWidget {
               )),
           Text(
             'OR',
-            style: TextStyle(color: CustomColor.kTometoColor, fontSize: 17),
+            style: TextStyle(color: AppColors.kTometoColor, fontSize: 17),
           ),
           Expanded(
               child: Divider(

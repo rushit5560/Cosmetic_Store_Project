@@ -1,5 +1,5 @@
-import 'package:cosmetic_store/common/assets_image_url.dart';
-import 'package:cosmetic_store/common/custom_color.dart';
+import 'package:cosmetic_store/common/app_images.dart';
+import 'package:cosmetic_store/common/app_color.dart';
 import 'package:cosmetic_store/screens/cart_screen/cart_screen.dart';
 import 'package:cosmetic_store/screens/edit_profile_screen/edit_profile_screen.dart';
 import 'package:cosmetic_store/screens/notification_screen/notification_screen.dart';
@@ -58,7 +58,7 @@ class ProfileScreen extends StatelessWidget {
                 color: Colors.grey,
                 borderRadius: BorderRadius.circular(15),
                 image: DecorationImage(
-                  image: AssetImage(AssetsImageUrl.profile),
+                  image: AssetImage(AppImages.profile),
                   fit: BoxFit.cover,
                 ),
             ),
@@ -73,7 +73,7 @@ class ProfileScreen extends StatelessWidget {
                 width: 40, height: 40,
                 decoration: BoxDecoration(
                   shape: BoxShape.circle,
-                  color: CustomColor.kTometoColor
+                  color: AppColors.kTometoColor
                 ),
                 child: Center(
                   child: IconButton(

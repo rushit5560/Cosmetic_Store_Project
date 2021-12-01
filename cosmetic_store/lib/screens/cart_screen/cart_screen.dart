@@ -1,5 +1,5 @@
-import 'package:cosmetic_store/common/assets_image_url.dart';
-import 'package:cosmetic_store/common/custom_color.dart';
+import 'package:cosmetic_store/common/app_images.dart';
+import 'package:cosmetic_store/common/app_color.dart';
 import 'package:cosmetic_store/models/cart_screen_model/cart_model.dart';
 import 'package:cosmetic_store/screens/checkout_screen/checkout_screen.dart';
 import 'package:flutter/material.dart';
@@ -10,22 +10,22 @@ class CartScreen extends StatelessWidget {
 
   List<SingleCartItem> cartItems = [
     SingleCartItem(
-      productImgUrl: AssetsImageUrl.collection1,
+      productImgUrl: AppImages.collection1,
       productName: 'lorem ipsum dolor sit',
       activeAmount: '50',
     ),
     SingleCartItem(
-      productImgUrl: AssetsImageUrl.collection2,
+      productImgUrl: AppImages.collection2,
       productName: 'lorem ipsum dolor sit',
       activeAmount: '70',
     ),
     SingleCartItem(
-      productImgUrl: AssetsImageUrl.collection3,
+      productImgUrl: AppImages.collection3,
       productName: 'lorem ipsum dolor sit',
       activeAmount: '85',
     ),
     SingleCartItem(
-      productImgUrl: AssetsImageUrl.collection4,
+      productImgUrl: AppImages.collection4,
       productName: 'lorem ipsum dolor sit',
       activeAmount: '99',
     ),
@@ -86,7 +86,7 @@ class CartScreen extends StatelessWidget {
                           height: 70, width: 70,
                           decoration: BoxDecoration(
                             shape: BoxShape.circle,
-                            color: CustomColor.kCollection1,
+                            color: AppColors.kCollection1,
                           ),
                           child: Padding(
                             padding: const EdgeInsets.all(8.0),
@@ -109,7 +109,7 @@ class CartScreen extends StatelessWidget {
                               Text(
                                   '\$${cartItems[index].activeAmount}',
                                 style: TextStyle(
-                                  color: CustomColor.kTometoColor,
+                                  color: AppColors.kTometoColor,
                                 ),
                               ),
                             ],
@@ -143,11 +143,11 @@ class CartScreen extends StatelessWidget {
                                 bottom: 10,top: 10,
                               ),
                               focusedBorder: OutlineInputBorder(
-                                borderSide: BorderSide(color: CustomColor.kTometoColor),
+                                borderSide: BorderSide(color: AppColors.kTometoColor),
                                 borderRadius: BorderRadius.circular(15),
                               ),
                               enabledBorder: OutlineInputBorder(
-                                borderSide: BorderSide(color: CustomColor.kTometoColor),
+                                borderSide: BorderSide(color: AppColors.kTometoColor),
                                 borderRadius: BorderRadius.circular(15),
                               ),
                             ),
@@ -178,29 +178,29 @@ class CartScreen extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 35),
         child: TextFormField(
-          cursorColor: CustomColor.kTometoColor,
+          cursorColor: AppColors.kTometoColor,
           decoration: InputDecoration(
-            fillColor: CustomColor.kTometoColor,
+            fillColor: AppColors.kTometoColor,
             hintText: "Promo Code",
             isDense: true,
             contentPadding: EdgeInsets.fromLTRB(15, 10, 10, 10),
             border: OutlineInputBorder(
               borderSide: BorderSide(
-                  color: CustomColor.kTometoColor, width: 2, style: BorderStyle.solid),
+                  color: AppColors.kTometoColor, width: 2, style: BorderStyle.solid),
             ),
             focusedBorder: OutlineInputBorder(
-              borderSide: BorderSide(color: CustomColor.kTometoColor),
+              borderSide: BorderSide(color: AppColors.kTometoColor),
               borderRadius: BorderRadius.circular(20),
             ),
             enabledBorder: OutlineInputBorder(
-              borderSide: BorderSide(color: CustomColor.kTometoColor),
+              borderSide: BorderSide(color: AppColors.kTometoColor),
               borderRadius: BorderRadius.circular(20),
             ),
             suffixIcon: Container(
               width: 85,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(20),
-                color: CustomColor.kTometoColor,
+                color: AppColors.kTometoColor,
               ),
               child: Center(
                 child: Text(
@@ -350,7 +350,7 @@ class CartScreen extends StatelessWidget {
             child: Container(
               width: Get.width * 0.40,
               decoration: BoxDecoration(
-                  color: CustomColor.kTometoColor,
+                  color: AppColors.kTometoColor,
                   borderRadius: BorderRadius.circular(25)),
               child: Center(
                   child: Padding(

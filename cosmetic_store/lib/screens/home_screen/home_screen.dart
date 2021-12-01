@@ -1,5 +1,5 @@
-import 'package:cosmetic_store/common/assets_image_url.dart';
-import 'package:cosmetic_store/common/custom_color.dart';
+import 'package:cosmetic_store/common/app_images.dart';
+import 'package:cosmetic_store/common/app_color.dart';
 import 'package:cosmetic_store/common/custom_drawer.dart';
 import 'package:cosmetic_store/screens/cart_screen/cart_screen.dart';
 import 'package:cosmetic_store/screens/category_screen/category_screen.dart';
@@ -23,100 +23,100 @@ class _HomeScreenState extends State<HomeScreen> {
   int activeIndex = 0;
 
   List bannerImgList = [
-    AssetsImageUrl.banner1,
-    AssetsImageUrl.banner2,
-    AssetsImageUrl.banner3,
+    AppImages.banner1,
+    AppImages.banner2,
+    AppImages.banner3,
   ];
 
   final categoryList = [
-    AssetsImageUrl.category1, AssetsImageUrl.category2,
-    AssetsImageUrl.category3, AssetsImageUrl.category4,
-    AssetsImageUrl.category5, AssetsImageUrl.category6,
-    AssetsImageUrl.category7, AssetsImageUrl.category8,
-    AssetsImageUrl.category9, AssetsImageUrl.category10,
-    AssetsImageUrl.category11, AssetsImageUrl.category12,
-    AssetsImageUrl.category11, AssetsImageUrl.category12,
-    AssetsImageUrl.category11, AssetsImageUrl.category12,
+    AppImages.category1, AppImages.category2,
+    AppImages.category3, AppImages.category4,
+    AppImages.category5, AppImages.category6,
+    AppImages.category7, AppImages.category8,
+    AppImages.category9, AppImages.category10,
+    AppImages.category11, AppImages.category12,
+    AppImages.category11, AppImages.category12,
+    AppImages.category11, AppImages.category12,
   ];
 
   List<NewArrivalsModel> newArrivalsList = [
     NewArrivalsModel(
-      imgUrl: AssetsImageUrl.collection1,
+      imgUrl: AppImages.collection1,
       productTitle: 'Product Name 12121',
       productPrice: '50',
     ),
     NewArrivalsModel(
-      imgUrl: AssetsImageUrl.collection2,
+      imgUrl: AppImages.collection2,
       productTitle: 'Product Name',
       productPrice: '50',
     ),
     NewArrivalsModel(
-      imgUrl: AssetsImageUrl.collection3,
+      imgUrl: AppImages.collection3,
       productTitle: 'Product Name',
       productPrice: '50',
     ),
     NewArrivalsModel(
-      imgUrl: AssetsImageUrl.collection4,
+      imgUrl: AppImages.collection4,
       productTitle: 'Product Name',
       productPrice: '50',
     ),
     NewArrivalsModel(
-      imgUrl: AssetsImageUrl.collection5,
+      imgUrl: AppImages.collection5,
       productTitle: 'Product Name',
       productPrice: '50',
     ),
     NewArrivalsModel(
-      imgUrl: AssetsImageUrl.collection6,
+      imgUrl: AppImages.collection6,
       productTitle: 'Product Name',
       productPrice: '50',
     ),
     NewArrivalsModel(
-      imgUrl: AssetsImageUrl.collection7,
+      imgUrl: AppImages.collection7,
       productTitle: 'Product Name',
       productPrice: '50',
     ),
     NewArrivalsModel(
-      imgUrl: AssetsImageUrl.collection8,
+      imgUrl: AppImages.collection8,
       productTitle: 'Product Name',
       productPrice: '50',
     ),
     NewArrivalsModel(
-      imgUrl: AssetsImageUrl.collection1,
+      imgUrl: AppImages.collection1,
       productTitle: 'Product Name',
       productPrice: '50',
     ),
     NewArrivalsModel(
-      imgUrl: AssetsImageUrl.collection2,
+      imgUrl: AppImages.collection2,
       productTitle: 'Product Name',
       productPrice: '50',
     ),
     NewArrivalsModel(
-      imgUrl: AssetsImageUrl.collection3,
+      imgUrl: AppImages.collection3,
       productTitle: 'Product Name',
       productPrice: '50',
     ),
     NewArrivalsModel(
-      imgUrl: AssetsImageUrl.collection4,
+      imgUrl: AppImages.collection4,
       productTitle: 'Product Name',
       productPrice: '50',
     ),
     NewArrivalsModel(
-      imgUrl: AssetsImageUrl.collection5,
+      imgUrl: AppImages.collection5,
       productTitle: 'Product Name',
       productPrice: '50',
     ),
     NewArrivalsModel(
-      imgUrl: AssetsImageUrl.collection6,
+      imgUrl: AppImages.collection6,
       productTitle: 'Product Name',
       productPrice: '50',
     ),
     NewArrivalsModel(
-      imgUrl: AssetsImageUrl.collection7,
+      imgUrl: AppImages.collection7,
       productTitle: 'Product Name',
       productPrice: '50',
     ),
     NewArrivalsModel(
-      imgUrl: AssetsImageUrl.collection8,
+      imgUrl: AppImages.collection8,
       productTitle: 'Product Name',
       productPrice: '50',
     ),
@@ -205,7 +205,7 @@ class _HomeScreenState extends State<HomeScreen> {
       effect: WormEffect(
         dotHeight: 11,
         dotWidth: 11,
-        activeDotColor: CustomColor.kTometoColor,
+        activeDotColor: AppColors.kTometoColor,
         dotColor: Colors.white,
       ),
     );
@@ -267,7 +267,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   child: Container(
                     decoration: BoxDecoration(
                       shape: BoxShape.circle,
-                      color: CustomColor.kTometoColor,
+                      color: AppColors.kTometoColor,
                     ),
                     child: Padding(
                       padding: const EdgeInsets.all(2),
@@ -345,7 +345,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     child: Container(
                       decoration: BoxDecoration(
                           shape: BoxShape.circle,
-                          color: CustomColor.kCollection1
+                          color: AppColors.kCollection1
                       ),
                       child: Padding(
                         padding: const EdgeInsets.all(12),
@@ -372,7 +372,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   Text(
                     '\$${newArrivalsList[index].productPrice}',
                     style: TextStyle(
-                      color: CustomColor.kTometoColor,
+                      color: AppColors.kTometoColor,
                       fontWeight: FontWeight.bold,
                     ),
                   ),

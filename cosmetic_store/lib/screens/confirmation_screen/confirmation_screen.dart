@@ -1,5 +1,5 @@
-import 'package:cosmetic_store/common/assets_image_url.dart';
-import 'package:cosmetic_store/common/custom_color.dart';
+import 'package:cosmetic_store/common/app_images.dart';
+import 'package:cosmetic_store/common/app_color.dart';
 import 'package:cosmetic_store/screens/index_screen/index_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -17,7 +17,7 @@ class ConfirmationScreen extends StatelessWidget {
               height: Get.height * 0.40,
               decoration: BoxDecoration(
                 image: DecorationImage(
-                  image: AssetImage(AssetsImageUrl.confirmation),
+                  image: AssetImage(AppImages.confirmation),
                 )
               ),
             ),
@@ -55,7 +55,7 @@ class ConfirmationScreen extends StatelessWidget {
         child: Container(
           width: Get.width * 0.50,
           decoration: BoxDecoration(
-              color: CustomColor.kTometoColor,
+              color: AppColors.kTometoColor,
               borderRadius: BorderRadius.circular(25)),
           child: Center(
             child: Padding(

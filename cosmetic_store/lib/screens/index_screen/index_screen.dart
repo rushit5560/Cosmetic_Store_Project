@@ -1,4 +1,4 @@
-import 'package:cosmetic_store/common/custom_color.dart';
+import 'package:cosmetic_store/common/app_color.dart';
 import 'package:cosmetic_store/screens/cart_screen/cart_screen.dart';
 import 'package:cosmetic_store/screens/favourite_screen/favourite_screen.dart';
 import 'package:cosmetic_store/screens/home_screen/home_screen.dart';
@@ -44,31 +44,31 @@ class _IndexScreenState extends State<IndexScreen> {
             icon: Icon(Icons.shopping_cart_rounded),
             label: '',
             tooltip: 'Cart',
-            backgroundColor: CustomColor.kTometoColor,
+            backgroundColor: AppColors.kTometoColor,
           ),
           BottomNavigationBarItem(
               icon: Icon(Icons.favorite_outlined),
               label: '',
               tooltip: 'Favourite',
-              backgroundColor: CustomColor.kTometoColor,
+              backgroundColor: AppColors.kTometoColor,
           ),
           BottomNavigationBarItem(
               icon: Icon(Icons.home_rounded),
               label: '',
               tooltip: 'Home',
-              backgroundColor: CustomColor.kTometoColor,
+              backgroundColor: AppColors.kTometoColor,
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.notifications_rounded),
             label: '',
             tooltip: 'Notification',
-            backgroundColor: CustomColor.kTometoColor,
+            backgroundColor: AppColors.kTometoColor,
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.person_rounded),
             label: '',
             tooltip: 'Profile',
-            backgroundColor: CustomColor.kTometoColor,
+            backgroundColor: AppColors.kTometoColor,
           ),
 
         ],

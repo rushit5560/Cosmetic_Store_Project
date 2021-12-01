@@ -1,6 +1,6 @@
 import 'dart:async';
 
-import 'package:cosmetic_store/common/custom_color.dart';
+import 'package:cosmetic_store/common/app_color.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
@@ -93,7 +93,7 @@ class ContactusScreen extends StatelessWidget {
           child: Column(
             children: [
               TextFormField(
-                cursorColor: CustomColor.kTometoColor,
+                cursorColor: AppColors.kTometoColor,
                 controller: userNameController,
                 validator: (value) {
                   if(value!.isEmpty){
@@ -118,7 +118,7 @@ class ContactusScreen extends StatelessWidget {
               SizedBox(height: 15),
 
               TextFormField(
-                cursorColor: CustomColor.kTometoColor,
+                cursorColor: AppColors.kTometoColor,
                 controller: emailIdController,
                 keyboardType: TextInputType.emailAddress,
                 validator: (value) {
@@ -147,7 +147,7 @@ class ContactusScreen extends StatelessWidget {
               SizedBox(height: 15),
 
               TextFormField(
-                cursorColor: CustomColor.kTometoColor,
+                cursorColor: AppColors.kTometoColor,
                 controller: subjectController,
                 validator: (value) {
                   if(value!.isEmpty){
@@ -172,7 +172,7 @@ class ContactusScreen extends StatelessWidget {
               SizedBox(height: 15),
 
               TextFormField(
-                cursorColor: CustomColor.kTometoColor,
+                cursorColor: AppColors.kTometoColor,
                 controller: commentController,
                 validator: (value) {
                   if(value!.isEmpty){
@@ -222,7 +222,7 @@ class ContactusScreen extends StatelessWidget {
         width: Get.width,
         height: 45,
         decoration: BoxDecoration(
-          color: CustomColor.kTometoColor,
+          color: AppColors.kTometoColor,
           borderRadius: BorderRadius.circular(30),
         ),
         child: Center(

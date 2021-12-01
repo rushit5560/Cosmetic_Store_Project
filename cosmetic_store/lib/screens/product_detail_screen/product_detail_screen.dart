@@ -1,5 +1,5 @@
-import 'package:cosmetic_store/common/assets_image_url.dart';
-import 'package:cosmetic_store/common/custom_color.dart';
+import 'package:cosmetic_store/common/app_images.dart';
+import 'package:cosmetic_store/common/app_color.dart';
 import 'package:cosmetic_store/common/read_more_text.dart';
 import 'package:cosmetic_store/models/product_detail_screen_model/review_model.dart';
 import 'package:cosmetic_store/screens/cart_screen/cart_screen.dart';
@@ -16,11 +16,11 @@ class ProductDetailScreen extends StatefulWidget {
 
 class _ProductDetailScreenState extends State<ProductDetailScreen> {
   List relatedImgList = [
-    AssetsImageUrl.collection2,
-    AssetsImageUrl.collection3,
-    AssetsImageUrl.collection4,
-    AssetsImageUrl.collection4,
-    AssetsImageUrl.collection4,
+    AppImages.collection2,
+    AppImages.collection3,
+    AppImages.collection4,
+    AppImages.collection4,
+    AppImages.collection4,
   ];
 
   String desText =
@@ -28,37 +28,37 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
 
   List<ReviewInfo> reviewList = [
     ReviewInfo(
-      imgUrl: AssetsImageUrl.profile,
+      imgUrl: AppImages.profile,
       userName: 'Tokyo',
       stars: '4',
       description: 'Processor: AMD Ryzen 9 5900HS, 2.8 GHz Base Speed, Up to 4.6 GHz TurboBoost Speed, 8 Cores, 16 Threads, 20M Cache Display: 35.56 cm (14-inch) WQHD (2560 x 1440) 16:9 LED-Backlit LCD',
     ),
     ReviewInfo(
-      imgUrl: AssetsImageUrl.profile,
+      imgUrl: AppImages.profile,
       userName: 'Arturito',
       stars: '4.5',
       description: 'Processor: AMD Ryzen 9 5900HS, 2.8 GHz Base Speed, Up to 4.6 GHz TurboBoost Speed, 8 Cores, 16 Threads, 20M Cache Display: 35.56 cm (14-inch) WQHD (2560 x 1440) 16:9 LED-Backlit LCD',
     ),
     ReviewInfo(
-      imgUrl: AssetsImageUrl.profile,
+      imgUrl: AppImages.profile,
       userName: 'Berline',
       stars: '4.5',
       description: 'Processor: AMD Ryzen 9 5900HS, 2.8 GHz Base Speed, Up to 4.6 GHz TurboBoost Speed, 8 Cores, 16 Threads, 20M Cache Display: 35.56 cm (14-inch) WQHD (2560 x 1440) 16:9 LED-Backlit LCD',
     ),
     ReviewInfo(
-      imgUrl: AssetsImageUrl.profile,
+      imgUrl: AppImages.profile,
       userName: 'Neirobi',
       stars: '4.5',
       description: 'Processor: AMD Ryzen 9 5900HS, 2.8 GHz Base Speed, Up to 4.6 GHz TurboBoost Speed, 8 Cores, 16 Threads, 20M Cache Display: 35.56 cm (14-inch) WQHD (2560 x 1440) 16:9 LED-Backlit LCD',
     ),
     ReviewInfo(
-      imgUrl: AssetsImageUrl.profile,
+      imgUrl: AppImages.profile,
       userName: 'Tokyo',
       stars: '4',
       description: 'Processor: AMD Ryzen 9 5900HS, 2.8 GHz Base Speed, Up to 4.6 GHz TurboBoost Speed, 8 Cores, 16 Threads, 20M Cache Display: 35.56 cm (14-inch) WQHD (2560 x 1440) 16:9 LED-Backlit LCD',
     ),
     ReviewInfo(
-      imgUrl: AssetsImageUrl.profile,
+      imgUrl: AppImages.profile,
       userName: 'Tokyo',
       stars: '4',
       description: 'Processor: AMD Ryzen 9 5900HS, 2.8 GHz Base Speed, Up to 4.6 GHz TurboBoost Speed, 8 Cores, 16 Threads, 20M Cache Display: 35.56 cm (14-inch) WQHD (2560 x 1440) 16:9 LED-Backlit LCD',
@@ -109,7 +109,7 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
           style: TextStyle(
             fontWeight: FontWeight.bold,
             fontSize: 18,
-            color: CustomColor.kTometoColor,
+            color: AppColors.kTometoColor,
           ),
         ),
         SizedBox(height: 15),
@@ -118,7 +118,7 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
             Container(
               height: Get.width * 0.50, width: Get.width * 0.50,
               decoration: BoxDecoration(
-                color: CustomColor.kCollection1,
+                color: AppColors.kCollection1,
                 shape: BoxShape.circle,
               ),
               child: Padding(
@@ -128,7 +128,7 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                     decoration: BoxDecoration(
                         shape: BoxShape.circle,
                         image: DecorationImage(
-                          image: AssetImage(AssetsImageUrl.collection1),
+                          image: AssetImage(AppImages.collection1),
                         )
                     ),
                   ),
@@ -157,7 +157,7 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
           child: ReadMoreText(
             desText,
             trimLines: 4,
-            colorClickableText: CustomColor.kTometoColor,
+            colorClickableText: AppColors.kTometoColor,
             trimMode: TrimMode.Line,
             trimCollapsedText: '...More',
             trimExpandedText: ' Less',
@@ -183,7 +183,7 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
               height: 100, width: 100,
               decoration: BoxDecoration(
                 shape: BoxShape.circle,
-                color: CustomColor.kCollection2,
+                color: AppColors.kCollection2,
               ),
               child: Padding(
                 padding: const EdgeInsets.all(8.0),
@@ -240,7 +240,7 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                                   child: RatingBar.builder(
                                     itemCount: 5,
                                     ignoreGestures: true,
-                                    unratedColor: CustomColor.kLightYellowColor,
+                                    unratedColor: AppColors.kLightYellowColor,
                                     allowHalfRating: true,
                                     itemSize: 15,
                                     minRating: 1,
@@ -249,7 +249,7 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                                     itemBuilder: (context, _) {
                                       return Icon(
                                         Icons.star_rounded,
-                                        color: CustomColor.kYellowColor,
+                                        color: AppColors.kYellowColor,
                                       );
                                     },
                                     onRatingUpdate: (rating) {

@@ -1,5 +1,5 @@
-import 'package:cosmetic_store/common/assets_image_url.dart';
-import 'package:cosmetic_store/common/custom_color.dart';
+import 'package:cosmetic_store/common/app_images.dart';
+import 'package:cosmetic_store/common/app_color.dart';
 import 'package:flutter/material.dart';
 
 import '../../models/order_screen_model/order_model.dart';
@@ -7,25 +7,25 @@ import '../../models/order_screen_model/order_model.dart';
 class OrderScreen extends StatelessWidget {
   List<OrderInfo> orderItems = [
     OrderInfo(
-      imgUrl: AssetsImageUrl.collection1,
+      imgUrl: AppImages.collection1,
       name: 'Product Name One',
       amount: '50',
       qty: '1',
     ),
     OrderInfo(
-      imgUrl: AssetsImageUrl.collection2,
+      imgUrl: AppImages.collection2,
       name: 'Product Name Two',
       amount: '50',
       qty: '2',
     ),
     OrderInfo(
-      imgUrl: AssetsImageUrl.collection3,
+      imgUrl: AppImages.collection3,
       name: 'Product Name Three',
       amount: '50',
       qty: '1',
     ),
     OrderInfo(
-      imgUrl: AssetsImageUrl.collection4,
+      imgUrl: AppImages.collection4,
       name: 'Product Name Four',
       amount: '50',
       qty: '3',
@@ -86,7 +86,7 @@ class OrderScreen extends StatelessWidget {
                       height: 60, width: 60,
                       decoration: BoxDecoration(
                         shape: BoxShape.circle,
-                        color: CustomColor.kCollection1,
+                        color: AppColors.kCollection1,
                       ),
                       child: Padding(
                         padding: const EdgeInsets.all(10),
@@ -111,7 +111,7 @@ class OrderScreen extends StatelessWidget {
                           '\$${orderItems[index].amount}',
                           style: TextStyle(
                             fontWeight: FontWeight.bold,
-                            color: CustomColor.kTometoColor,
+                            color: AppColors.kTometoColor,
                           ),
                         ),
                       ],
@@ -123,7 +123,7 @@ class OrderScreen extends StatelessWidget {
               Container(
                 width: 25, height: 25,
                 decoration: BoxDecoration(
-                  color: CustomColor.kTometoColor,
+                  color: AppColors.kTometoColor,
                   shape: BoxShape.circle,
                 ),
                 child: Center(

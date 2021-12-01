@@ -1,4 +1,4 @@
-import 'package:cosmetic_store/common/custom_color.dart';
+import 'package:cosmetic_store/common/app_color.dart';
 import 'package:flutter/material.dart';
 
 class SettingsScreen extends StatefulWidget {
@@ -69,8 +69,8 @@ class _SettingsScreenState extends State<SettingsScreen> {
                     print(_notificationValue);
                   });
                 },
-                activeTrackColor: CustomColor.kTometoColor,
-                activeColor: CustomColor.kCollection2,
+                activeTrackColor: AppColors.kTometoColor,
+                activeColor: AppColors.kCollection2,
               )
             ],
           ),
@@ -108,8 +108,8 @@ class _SettingsScreenState extends State<SettingsScreen> {
                     print(_smsValue);
                   });
                 },
-                activeTrackColor: CustomColor.kTometoColor,
-                activeColor: CustomColor.kCollection2,
+                activeTrackColor: AppColors.kTometoColor,
+                activeColor: AppColors.kCollection2,
               )
             ],
           ),
@@ -147,8 +147,8 @@ class _SettingsScreenState extends State<SettingsScreen> {
                     print(_emailsValue);
                   });
                 },
-                activeTrackColor: CustomColor.kTometoColor,
-                activeColor: CustomColor.kCollection2,
+                activeTrackColor: AppColors.kTometoColor,
+                activeColor: AppColors.kCollection2,
               )
             ],
           ),
@@ -186,8 +186,8 @@ class _SettingsScreenState extends State<SettingsScreen> {
                     print(_darkModeValue);
                   });
                 },
-                activeTrackColor: CustomColor.kTometoColor,
-                activeColor: CustomColor.kCollection2,
+                activeTrackColor: AppColors.kTometoColor,
+                activeColor: AppColors.kCollection2,
               )
             ],
           ),

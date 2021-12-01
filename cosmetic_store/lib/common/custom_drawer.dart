@@ -1,4 +1,4 @@
-import 'package:cosmetic_store/common/assets_image_url.dart';
+import 'package:cosmetic_store/common/app_images.dart';
 import 'package:cosmetic_store/screens/collection_screen/collection_screen.dart';
 import 'package:cosmetic_store/screens/index_screen/index_screen.dart';
 import 'package:cosmetic_store/screens/notification_screen/notification_screen.dart';
@@ -9,7 +9,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import 'custom_color.dart';
+import 'app_color.dart';
 
 class CustomDrawer extends StatelessWidget {
   @override
@@ -49,7 +49,7 @@ class CustomDrawer extends StatelessWidget {
               child: Column(
                 children: [
                   divider(),
-                  logoutButton(),
+                  logInButton(),
                 ],
               ),
             ),
@@ -93,8 +93,8 @@ class CustomDrawer extends StatelessWidget {
           Container(
             child: CircleAvatar(
               radius: 50,
-              backgroundColor: CustomColor.kTometoColor,
-              backgroundImage: AssetImage(AssetsImageUrl.profile),
+              backgroundColor: AppColors.kTometoColor,
+              backgroundImage: AssetImage(AppImages.profile),
             ),
           ),
           SizedBox(height: 2),
@@ -204,7 +204,7 @@ class CustomDrawer extends StatelessWidget {
     );
   }
 
-  Widget logoutButton() {
+  Widget logInButton() {
     return Container(
       child: ListTile(
         onTap: () {
@@ -216,7 +216,7 @@ class CustomDrawer extends StatelessWidget {
           color: Colors.black,
         ),
         title: Text(
-          'Logout',
+          'Login',
           textScaleFactor: 1.2,
           style: TextStyle(color: Colors.black),
         ),

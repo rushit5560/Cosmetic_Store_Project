@@ -1,4 +1,4 @@
-import 'package:cosmetic_store/common/custom_color.dart';
+import 'package:cosmetic_store/common/app_color.dart';
 import 'package:cosmetic_store/screens/index_screen/index_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -351,7 +351,7 @@ class EditProfileScreen extends StatelessWidget {
         width: Get.width,
         height: 40,
         decoration: BoxDecoration(
-          color: CustomColor.kTometoColor,
+          color: AppColors.kTometoColor,
           borderRadius: BorderRadius.circular(25),
         ),
         child: Center(

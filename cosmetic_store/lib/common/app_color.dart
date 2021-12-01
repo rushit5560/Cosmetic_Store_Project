@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class CustomColor {
+class AppColors {
   static const Color kTometoColor = Color(0xFFf5867f);
   static const Color kMiddleColor = Color(0xFF794454);
   static const Color kDarkBlueColor = Color(0xFF0b092e);

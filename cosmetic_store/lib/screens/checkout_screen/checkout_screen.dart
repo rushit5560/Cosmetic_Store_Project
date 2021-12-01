@@ -1,5 +1,5 @@
-import 'package:cosmetic_store/common/assets_image_url.dart';
-import 'package:cosmetic_store/common/custom_color.dart';
+import 'package:cosmetic_store/common/app_images.dart';
+import 'package:cosmetic_store/common/app_color.dart';
 import 'package:cosmetic_store/screens/confirmation_screen/confirmation_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -64,7 +64,7 @@ class CheckOutScreen extends StatelessWidget {
                 child: Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 2),
                   child: Image(
-                    image: AssetImage(AssetsImageUrl.paypal),
+                    image: AssetImage(AppImages.paypal),
                   ),
                 ),
               ),
@@ -72,7 +72,7 @@ class CheckOutScreen extends StatelessWidget {
                 child: Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 2),
                   child: Image(
-                    image: AssetImage(AssetsImageUrl.visa),
+                    image: AssetImage(AppImages.visa),
                   ),
                 ),
               ),
@@ -80,7 +80,7 @@ class CheckOutScreen extends StatelessWidget {
                 child: Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 2),
                   child: Image(
-                    image: AssetImage(AssetsImageUrl.mastercard),
+                    image: AssetImage(AppImages.mastercard),
                   ),
                 ),
               ),
@@ -88,7 +88,7 @@ class CheckOutScreen extends StatelessWidget {
                 child: Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 2),
                   child: Image(
-                    image: AssetImage(AssetsImageUrl.card),
+                    image: AssetImage(AppImages.card),
                   ),
                 ),
               ),
@@ -137,7 +137,7 @@ class CheckOutScreen extends StatelessWidget {
             // padding: EdgeInsets.symmetric(horizontal: 10),
             child: TextFormField(
               maxLength: 16,
-              cursorColor: CustomColor.kTometoColor,
+              cursorColor: AppColors.kTometoColor,
               keyboardType: TextInputType.number,
               decoration: InputDecoration(
                 isDense: true,
@@ -147,7 +147,7 @@ class CheckOutScreen extends StatelessWidget {
                 border:
                     OutlineInputBorder(borderRadius: BorderRadius.circular(25)),
                 focusedBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: CustomColor.kTometoColor),
+                    borderSide: BorderSide(color: AppColors.kTometoColor),
                     borderRadius: BorderRadius.circular(25)),
               ),
               controller: cardNoController,
@@ -178,7 +178,7 @@ class CheckOutScreen extends StatelessWidget {
               Container(
                 child: TextFormField(
                   maxLength: 5,
-                  cursorColor: CustomColor.kTometoColor,
+                  cursorColor: AppColors.kTometoColor,
                   decoration: InputDecoration(
                     isDense: true,
                     counterText: '',
@@ -187,7 +187,7 @@ class CheckOutScreen extends StatelessWidget {
                     border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(25)),
                     focusedBorder: OutlineInputBorder(
-                        borderSide: BorderSide(color: CustomColor.kTometoColor),
+                        borderSide: BorderSide(color: AppColors.kTometoColor),
                         borderRadius: BorderRadius.circular(25)),
                   ),
                   controller: expDateController,
@@ -215,7 +215,7 @@ class CheckOutScreen extends StatelessWidget {
               SizedBox(height: 5),
               Container(
                 child: TextFormField(
-                  cursorColor: CustomColor.kTometoColor,
+                  cursorColor: AppColors.kTometoColor,
                   keyboardType: TextInputType.number,
                   maxLength: 3,
                   decoration: InputDecoration(
@@ -226,7 +226,7 @@ class CheckOutScreen extends StatelessWidget {
                     border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(25)),
                     focusedBorder: OutlineInputBorder(
-                        borderSide: BorderSide(color: CustomColor.kTometoColor),
+                        borderSide: BorderSide(color: AppColors.kTometoColor),
                         borderRadius: BorderRadius.circular(25)),
                   ),
                   controller: cvvController,
@@ -260,7 +260,7 @@ class CheckOutScreen extends StatelessWidget {
         SizedBox(height: 10),
         Container(
           child: TextFormField(
-            cursorColor: CustomColor.kTometoColor,
+            cursorColor: AppColors.kTometoColor,
             decoration: InputDecoration(
               isDense: true,
               contentPadding:
@@ -268,7 +268,7 @@ class CheckOutScreen extends StatelessWidget {
               border:
                   OutlineInputBorder(borderRadius: BorderRadius.circular(25)),
               focusedBorder: OutlineInputBorder(
-                  borderSide: BorderSide(color: CustomColor.kTometoColor),
+                  borderSide: BorderSide(color: AppColors.kTometoColor),
                   borderRadius: BorderRadius.circular(25)),
             ),
             controller: cardHolderNameController,
@@ -302,7 +302,7 @@ class CheckOutScreen extends StatelessWidget {
         child: Container(
           width: Get.width,
           decoration: BoxDecoration(
-              color: CustomColor.kTometoColor,
+              color: AppColors.kTometoColor,
               borderRadius: BorderRadius.circular(25)),
           child: Center(
             child: Padding(

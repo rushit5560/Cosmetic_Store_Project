@@ -1,5 +1,5 @@
-import 'package:cosmetic_store/common/assets_image_url.dart';
-import 'package:cosmetic_store/common/custom_color.dart';
+import 'package:cosmetic_store/common/app_images.dart';
+import 'package:cosmetic_store/common/app_color.dart';
 import 'package:cosmetic_store/models/collection_screen_model/collection_model.dart';
 import 'package:cosmetic_store/screens/cart_screen/cart_screen.dart';
 import 'package:cosmetic_store/screens/product_detail_screen/product_detail_screen.dart';
@@ -10,36 +10,36 @@ import 'package:get/get.dart';
 class CollectionScreen extends StatelessWidget {
   List<CollectionInfo> collectionList = [
     CollectionInfo(
-        backColor: CustomColor.kCollection1,
-        collectionImg: AssetsImageUrl.collection1,
+        backColor: AppColors.kCollection1,
+        collectionImg: AppImages.collection1,
     ),
     CollectionInfo(
-      backColor: CustomColor.kCollection2,
-      collectionImg: AssetsImageUrl.collection2,
+      backColor: AppColors.kCollection2,
+      collectionImg: AppImages.collection2,
     ),
     CollectionInfo(
-      backColor: CustomColor.kCollection3,
-      collectionImg: AssetsImageUrl.collection3,
+      backColor: AppColors.kCollection3,
+      collectionImg: AppImages.collection3,
     ),
     CollectionInfo(
-      backColor: CustomColor.kCollection4,
-      collectionImg: AssetsImageUrl.collection4,
+      backColor: AppColors.kCollection4,
+      collectionImg: AppImages.collection4,
     ),
     CollectionInfo(
-      backColor: CustomColor.kCollection5,
-      collectionImg: AssetsImageUrl.collection5,
+      backColor: AppColors.kCollection5,
+      collectionImg: AppImages.collection5,
     ),
     CollectionInfo(
-      backColor: CustomColor.kCollection6,
-      collectionImg: AssetsImageUrl.collection6,
+      backColor: AppColors.kCollection6,
+      collectionImg: AppImages.collection6,
     ),
     CollectionInfo(
-      backColor: CustomColor.kCollection7,
-      collectionImg: AssetsImageUrl.collection7,
+      backColor: AppColors.kCollection7,
+      collectionImg: AppImages.collection7,
     ),
     CollectionInfo(
-      backColor: CustomColor.kCollection8,
-      collectionImg: AssetsImageUrl.collection8,
+      backColor: AppColors.kCollection8,
+      collectionImg: AppImages.collection8,
     ),
   ];
 

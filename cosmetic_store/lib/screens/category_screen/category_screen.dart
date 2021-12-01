@@ -1,5 +1,5 @@
-import 'package:cosmetic_store/common/assets_image_url.dart';
-import 'package:cosmetic_store/common/custom_color.dart';
+import 'package:cosmetic_store/common/app_images.dart';
+import 'package:cosmetic_store/common/app_color.dart';
 import 'package:cosmetic_store/screens/cart_screen/cart_screen.dart';
 import 'package:cosmetic_store/screens/collection_screen/collection_screen.dart';
 import 'package:flutter/material.dart';
@@ -9,14 +9,14 @@ import 'package:get/get.dart';
 class CategoryScreen extends StatelessWidget {
 
   final categoryList = [
-    AssetsImageUrl.category1, AssetsImageUrl.category2,
-    AssetsImageUrl.category3, AssetsImageUrl.category4,
-    AssetsImageUrl.category5, AssetsImageUrl.category6,
-    AssetsImageUrl.category7, AssetsImageUrl.category8,
-    AssetsImageUrl.category9, AssetsImageUrl.category10,
-    AssetsImageUrl.category11, AssetsImageUrl.category12,
-    AssetsImageUrl.category11, AssetsImageUrl.category12,
-    AssetsImageUrl.category11, AssetsImageUrl.category12,
+    AppImages.category1, AppImages.category2,
+    AppImages.category3, AppImages.category4,
+    AppImages.category5, AppImages.category6,
+    AppImages.category7, AppImages.category8,
+    AppImages.category9, AppImages.category10,
+    AppImages.category11, AppImages.category12,
+    AppImages.category11, AppImages.category12,
+    AppImages.category11, AppImages.category12,
   ];
 
   @override
@@ -53,7 +53,7 @@ class CategoryScreen extends StatelessWidget {
               child: Container(
                 decoration: BoxDecoration(
                   shape: BoxShape.circle,
-                  color: CustomColor.kTometoColor,
+                  color: AppColors.kTometoColor,
                 ),
                 child: Padding(
                   padding: const EdgeInsets.all(2),

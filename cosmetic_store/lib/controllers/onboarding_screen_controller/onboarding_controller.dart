@@ -1,4 +1,4 @@
-import 'package:cosmetic_store/common/assets_image_url.dart';
+import 'package:cosmetic_store/common/app_images.dart';
 import 'package:cosmetic_store/models/onboarding_screen_model/onboarding_model.dart';
 import 'package:cosmetic_store/screens/index_screen/index_screen.dart';
 import 'package:flutter/material.dart';
@@ -24,17 +24,17 @@ class OnBoardingController extends GetxController {
   List<OnBoardingInfo> onBoardingPages = [
     OnBoardingInfo(
       title: 'Cosmetics',
-      imageAsset: AssetsImageUrl.service1,
+      imageAsset: AppImages.service1,
       description: 'Lorem ipsum dolor sit amet, consectetur adipiscing slit. Morbi dapibus, sem vel dapibus pellentesque, tellus lectus',
     ),
     OnBoardingInfo(
       title: 'Natural',
-      imageAsset: AssetsImageUrl.service2,
+      imageAsset: AppImages.service2,
       description: 'Lorem ipsum dolor sit amet, consectetur adipiscing slit. Morbi dapibus, sem vel dapibus pellentesque, tellus lectus',
     ),
     OnBoardingInfo(
       title: 'MakeUp',
-      imageAsset: AssetsImageUrl.service3,
+      imageAsset: AppImages.service3,
       description: 'Lorem ipsum dolor sit amet, consectetur adipiscing slit. Morbi dapibus, sem vel dapibus pellentesque, tellus lectus',
     ),
   ];

@@ -1,4 +1,4 @@
-import 'package:cosmetic_store/common/custom_color.dart';
+import 'package:cosmetic_store/common/app_color.dart';
 import 'package:cosmetic_store/controllers/onboarding_screen_controller/onboarding_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -20,9 +20,9 @@ class OnBoardingScreen extends StatelessWidget {
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter,
             colors: [
-              CustomColor.kTometoColor,
-              CustomColor.kMiddleColor,
-              CustomColor.kDarkBlueColor,
+              AppColors.kTometoColor,
+              AppColors.kMiddleColor,
+              AppColors.kDarkBlueColor,
             ]
           ),
         ),
@@ -78,7 +78,7 @@ class OnBoardingScreen extends StatelessWidget {
                     child: Container(
                       // height: 40,
                       decoration: BoxDecoration(
-                        color: CustomColor.kTometoColor,
+                        color: AppColors.kTometoColor,
                         borderRadius: BorderRadius.circular(20)
                       ),
                       width: Get.width * 0.40,
@@ -107,7 +107,7 @@ class OnBoardingScreen extends StatelessWidget {
                                 width: 12,
                                 height: 12,
                                 decoration: BoxDecoration(
-                                    color: onBoardingController.selectedPageIndex.value == index ? CustomColor.kTometoColor : Colors.white,
+                                    color: onBoardingController.selectedPageIndex.value == index ? AppColors.kTometoColor : Colors.white,
                                     shape: BoxShape.circle
                                 ),
                               ),
