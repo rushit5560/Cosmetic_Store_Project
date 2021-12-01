@@ -1,10 +1,10 @@
 import 'package:cosmetic_store/common/assets_image_url.dart';
-import 'package:cosmetic_store/pages/collection_page/collection_page.dart';
-import 'package:cosmetic_store/pages/index_page/index_page.dart';
-import 'package:cosmetic_store/pages/notification_page/notification_page.dart';
-import 'package:cosmetic_store/pages/profile_page/profile_page.dart';
-import 'package:cosmetic_store/pages/settings_page/settings_page.dart';
-import 'package:cosmetic_store/pages/signin_page/signin_page.dart';
+import 'package:cosmetic_store/screens/collection_screen/collection_screen.dart';
+import 'package:cosmetic_store/screens/index_screen/index_screen.dart';
+import 'package:cosmetic_store/screens/notification_screen/notification_screen.dart';
+import 'package:cosmetic_store/screens/profile_screen/profile_screen.dart';
+import 'package:cosmetic_store/screens/settings_screen/settings_screen.dart';
+import 'package:cosmetic_store/screens/signin_screen/signin_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -12,60 +12,60 @@ import 'package:get/get.dart';
 import 'custom_color.dart';
 
 class CustomDrawer extends StatelessWidget {
-
   @override
   Widget build(BuildContext context) {
     return Drawer(
       child: SafeArea(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Expanded(
-                child: SingleChildScrollView(
-                  physics: BouncingScrollPhysics(),
-                  child: Container(
-                    child: Column(
-                      children: [
-                        SizedBox(height: 5),
-                        closeButton(),
-
-                        SizedBox(height: 20),
-                        profilePicAndName(),
-                        SizedBox(height: 20),
-
-                        homeButton(),
-                        divider(),
-                        profileButton(),
-                        divider(),
-                        collectionButton(),
-                        divider(),
-                        settingsButton(),
-                        divider(),
-                        notificationButton(),
-                        divider(),
-                      ],
-                    ),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Expanded(
+              child: SingleChildScrollView(
+                physics: BouncingScrollPhysics(),
+                child: Container(
+                  child: Column(
+                    children: [
+                      SizedBox(height: 5),
+                      closeButton(),
+                      SizedBox(height: 20),
+                      profilePicAndName(),
+                      SizedBox(height: 20),
+                      homeButton(),
+                      divider(),
+                      profileButton(),
+                      divider(),
+                      collectionButton(),
+                      divider(),
+                      settingsButton(),
+                      divider(),
+                      notificationButton(),
+                      divider(),
+                    ],
                   ),
                 ),
               ),
-
-              Container(
-                child: Column(
-                  children: [
-                    divider(),
-                    logoutButton(),
-                  ],
-                ),
+            ),
+            Container(
+              child: Column(
+                children: [
+                  divider(),
+                  logoutButton(),
+                ],
               ),
-            ],
-          ),
+            ),
+          ],
+        ),
       ),
     );
   }
 
   Widget divider() {
-    return Divider(color: Colors.black,
-      indent: 15, endIndent: 15,height: 0,);
+    return Divider(
+      color: Colors.black,
+      indent: 15,
+      endIndent: 15,
+      height: 0,
+    );
   }
 
   Widget closeButton() {
@@ -74,10 +74,13 @@ class CustomDrawer extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.end,
         children: [
-          InkWell(onTap: () {
-            Get.back();
-          },
-              child: Icon(CupertinoIcons.clear,))
+          InkWell(
+              onTap: () {
+                Get.back();
+              },
+              child: Icon(
+                CupertinoIcons.clear,
+              ))
         ],
       ),
     );
@@ -97,7 +100,10 @@ class CustomDrawer extends StatelessWidget {
           SizedBox(height: 2),
           Text(
             'Jenny Doe',
-            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18,),
+            style: TextStyle(
+              fontWeight: FontWeight.bold,
+              fontSize: 18,
+            ),
           ),
           // Text(
           //   'jennydoe@gmail.com',
@@ -112,10 +118,14 @@ class CustomDrawer extends StatelessWidget {
     return ListTile(
       onTap: () {
         Get.back();
-        Get.to(IndexPage());
+        Get.to(() => IndexScreen());
       },
-      leading: Icon(Icons.home_outlined,color: Colors.black,),
-      title: Text('Home',
+      leading: Icon(
+        Icons.home_outlined,
+        color: Colors.black,
+      ),
+      title: Text(
+        'Home',
         textScaleFactor: 1.2,
         style: TextStyle(color: Colors.black),
       ),
@@ -126,10 +136,14 @@ class CustomDrawer extends StatelessWidget {
     return ListTile(
       onTap: () {
         Get.back();
-        Get.to(ProfilePage());
+        Get.to(() => ProfileScreen());
       },
-      leading: Icon(Icons.person_outline_outlined,color: Colors.black,),
-      title: Text('Profile',
+      leading: Icon(
+        Icons.person_outline_outlined,
+        color: Colors.black,
+      ),
+      title: Text(
+        'Profile',
         textScaleFactor: 1.2,
         style: TextStyle(color: Colors.black),
       ),
@@ -140,10 +154,14 @@ class CustomDrawer extends StatelessWidget {
     return ListTile(
       onTap: () {
         Get.back();
-        Get.to(CollectionPage());
+        Get.to(() => CollectionScreen());
       },
-      leading: Icon(Icons.storefront_outlined,color: Colors.black,),
-      title: Text('Collection',
+      leading: Icon(
+        Icons.storefront_outlined,
+        color: Colors.black,
+      ),
+      title: Text(
+        'Collection',
         textScaleFactor: 1.2,
         style: TextStyle(color: Colors.black),
       ),
@@ -154,10 +172,14 @@ class CustomDrawer extends StatelessWidget {
     return ListTile(
       onTap: () {
         Get.back();
-        Get.to(SettingsPage());
+        Get.to(() => SettingsScreen());
       },
-      leading: Icon(Icons.settings_outlined,color: Colors.black,),
-      title: Text('Settings',
+      leading: Icon(
+        Icons.settings_outlined,
+        color: Colors.black,
+      ),
+      title: Text(
+        'Settings',
         textScaleFactor: 1.2,
         style: TextStyle(color: Colors.black),
       ),
@@ -168,10 +190,14 @@ class CustomDrawer extends StatelessWidget {
     return ListTile(
       onTap: () {
         Get.back();
-        Get.to(NotificationPage());
+        Get.to(() => NotificationScreen());
       },
-      leading: Icon(Icons.notifications_on_outlined,color: Colors.black,),
-      title: Text('Notification',
+      leading: Icon(
+        Icons.notifications_on_outlined,
+        color: Colors.black,
+      ),
+      title: Text(
+        'Notification',
         textScaleFactor: 1.2,
         style: TextStyle(color: Colors.black),
       ),
@@ -183,10 +209,14 @@ class CustomDrawer extends StatelessWidget {
       child: ListTile(
         onTap: () {
           Get.back();
-          Get.to(SignInPage());
+          Get.to(() => SignInScreen());
         },
-        leading: Icon(Icons.login_outlined,color: Colors.black,),
-        title: Text('Logout',
+        leading: Icon(
+          Icons.login_outlined,
+          color: Colors.black,
+        ),
+        title: Text(
+          'Logout',
           textScaleFactor: 1.2,
           style: TextStyle(color: Colors.black),
         ),

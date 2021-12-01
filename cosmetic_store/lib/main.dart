@@ -1,6 +1,6 @@
-import 'package:cosmetic_store/pages/splash/splash_page.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'screens/splash_screen/splash_screen.dart';
 
 
 void main() {
@@ -21,7 +21,7 @@ class MyApp extends StatelessWidget {
           iconTheme: IconThemeData(color: Colors.black),
         ),
       ),
-      home: SplashPage(),
+      home: SplashScreen(),
     );
   }
 }
