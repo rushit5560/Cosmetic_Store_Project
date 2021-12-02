@@ -12,7 +12,7 @@ class CartScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // cartScreenController.getUserDetailsFromPrefs();
+    cartScreenController.getUserDetailsFromPrefs();
     return GestureDetector(
       onTap: () => FocusScope.of(context).requestFocus(FocusNode()),
       child: Scaffold(
@@ -144,7 +144,10 @@ class CartScreen extends StatelessWidget {
                           child: IconButton(
                             icon: Icon(Icons.delete_rounded),
                             color: Colors.red,
-                            onPressed: () {print('Delete Button Clicked');},
+                            onPressed: () {
+                              var cartDetailId = cartSingleItem.cartDetailId;
+                              cartScreenController.getDeleteProductCart(cartDetailId);
+                              },
                           ),
                         ),
                       ],
