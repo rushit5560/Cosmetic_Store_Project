@@ -2,9 +2,9 @@ import 'package:cosmetic_store/common/api_url.dart';
 import 'package:cosmetic_store/common/app_color.dart';
 import 'package:cosmetic_store/common/common_widgets.dart';
 import 'package:cosmetic_store/controllers/cart_screen_controller/cart_screen_controller.dart';
+import 'package:cosmetic_store/models/cart_screen_model/cart_model.dart';
 import 'package:cosmetic_store/screens/checkout_screen/checkout_screen.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 
 class CartScreen extends StatelessWidget {
@@ -12,6 +12,7 @@ class CartScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // cartScreenController.getUserDetailsFromPrefs();
     return GestureDetector(
       onTap: () => FocusScope.of(context).requestFocus(FocusNode()),
       child: Scaffold(
@@ -57,6 +58,7 @@ class CartScreen extends StatelessWidget {
         physics: NeverScrollableScrollPhysics(),
         itemBuilder: (context, index) {
           final imgUrl = ApiUrl.ApiMainPath + "asset/uploads/product/" + '${cartScreenController.userCartProductLists[index].showimg}';
+          Cartditeil cartSingleItem = cartScreenController.userCartProductLists[index];
           return Padding(
             padding: const EdgeInsets.all(8.0),
             child: Container(
@@ -88,10 +90,10 @@ class CartScreen extends StatelessWidget {
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Text(cartScreenController.userCartProductLists[index].productname),
+                              Text(cartSingleItem.productname),
                               SizedBox(height: 5),
                               Text(
-                                  '\$${cartScreenController.userCartProductLists[index].productcost}',
+                                  '\$${cartSingleItem.productcost}',
                                 style: TextStyle(
                                   color: AppColors.kTometoColor,
                                 ),
@@ -111,13 +113,13 @@ class CartScreen extends StatelessWidget {
                             children: [
                               GestureDetector(
                                 onTap: () {
-                                  // if(cartSingleItem.cquantity > 1) {
-                                  //   int cartQty = cartSingleItem.cquantity;
-                                  //   int cartQtyDec = cartQty - 1;
-                                  //   print('cquantity -- : $cartQtyDec');
-                                  //   cartScreenController.getAddProductCartQty(cartQtyDec, cartSingleItem.cartDetailId);
-                                  //   cartScreenController.getUserDetailsFromPrefs();
-                                  // }
+                                  if(cartSingleItem.cquantity > 1) {
+                                    int cartQty = cartSingleItem.cquantity;
+                                    int cartQtyDec = cartQty - 1;
+                                    print('cquantity -- : $cartQtyDec');
+                                    cartScreenController.getAddProductCartQty(cartQtyDec, cartSingleItem.cartDetailId);
+                                    cartScreenController.getUserDetailsFromPrefs();
+                                  }
                                 },
                                 child: Icon(Icons.remove_rounded),
                               ),
@@ -127,48 +129,17 @@ class CartScreen extends StatelessWidget {
                               ),
                               GestureDetector(
                                 onTap: () {
-                                  // int cartQty = cartSingleItem.cquantity;
-                                  // int cartQtyInc = cartQty + 1;
-                                  // print('cquantity ++ : $cartQtyInc');
-                                  // cartScreenController.getAddProductCartQty(cartQtyInc, cartSingleItem.cartDetailId);
-                                  // cartScreenController.getUserDetailsFromPrefs();
+                                  int cartQty = cartSingleItem.cquantity;
+                                  int cartQtyInc = cartQty + 1;
+                                  print('cquantity ++ : $cartQtyInc');
+                                  cartScreenController.getAddProductCartQty(cartQtyInc, cartSingleItem.cartDetailId);
+                                  cartScreenController.getUserDetailsFromPrefs();
                                 },
                                 child: Icon(Icons.add_rounded),
                               ),
                             ],
                           ),
                         ),
-                        // Container(
-                        //   width: 50,
-                        //   height: 25,
-                        //   child: TextFormField(
-                        //     textAlign: TextAlign.center,
-                        //     inputFormatters: [
-                        //       LengthLimitingTextInputFormatter(1)
-                        //     ],
-                        //     style: TextStyle(
-                        //       fontSize: 12,
-                        //     ),
-                        //     cursorColor: Colors.black,
-                        //     initialValue: '1',
-                        //     keyboardType: TextInputType.number,
-                        //     decoration: InputDecoration(
-                        //       isDense: true,
-                        //       contentPadding: EdgeInsets.only(
-                        //         left: 10, right: 10,
-                        //         bottom: 10,top: 10,
-                        //       ),
-                        //       focusedBorder: OutlineInputBorder(
-                        //         borderSide: BorderSide(color: AppColors.kTometoColor),
-                        //         borderRadius: BorderRadius.circular(15),
-                        //       ),
-                        //       enabledBorder: OutlineInputBorder(
-                        //         borderSide: BorderSide(color: AppColors.kTometoColor),
-                        //         borderRadius: BorderRadius.circular(15),
-                        //       ),
-                        //     ),
-                        //   ),
-                        // ),
                         Container(
                           child: IconButton(
                             icon: Icon(Icons.delete_rounded),
@@ -247,7 +218,7 @@ class CartScreen extends StatelessWidget {
                   color: Colors.black,
                 ),
               ),
-              Text('\$400.00',
+              Text('\$${cartScreenController.userCartTotalAmount.value}',
                 style: TextStyle(
                   fontSize: 15,
                   color: Colors.black,
@@ -335,7 +306,7 @@ class CartScreen extends StatelessWidget {
                   fontWeight: FontWeight.bold,
                 ),
               ),
-              Text('\$450.00',
+              Text('\$${cartScreenController.userCartTotalAmount.value}',
                 style: TextStyle(
                   fontSize: 15,
                   color: Colors.black,
@@ -352,7 +323,6 @@ class CartScreen extends StatelessWidget {
   }
 
   Widget checkoutButton() {
-
     return Row(
       mainAxisAlignment: MainAxisAlignment.end,
       children: [

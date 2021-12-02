@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'package:cosmetic_store/common/api_url.dart';
+import 'package:cosmetic_store/models/cart_screen_model/add_cart_qty.dart';
 import 'package:cosmetic_store/models/cart_screen_model/cart_model.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
@@ -41,33 +42,35 @@ class CartScreenController extends GetxController {
     }
   }
 
-  // getAddProductCartQty(quantity, cartDetailId) async {
-  //   isLoading(true);
-  //   String url = ApiUrl.AddCartQtyApi;
-  //   print('Url : $url');
-  //
-  //   try{
-  //     Map data = {
-  //       "qty": "$quantity",
-  //       "cid": "$cartDetailId"
-  //     };
-  //     print('data : $data');
-  //
-  //     http.Response response = await http.post(Uri.parse(url), body: data);
-  //     AddCartQtyData addCartQtyData = AddCartQtyData.fromJson(json.decode(response.body));
-  //     isStatus = addCartQtyData.success.obs;
-  //
-  //     if(isStatus.value){
-  //       Get.snackbar(addCartQtyData.message, '');
-  //     } else {
-  //       print('Add Qty False');
-  //     }
-  //   } catch(e) {
-  //     print('Add Product Qty Error : $e');
-  //   } finally {
-  //     isLoading(false);
-  //   }
-  // }
+  getAddProductCartQty(quantity, cartDetailId) async {
+    isLoading(true);
+    String url = ApiUrl.AddCartQtyApi;
+    print('Url : $url');
+
+    try{
+      Map data = {
+        "qty": "$quantity",
+        "cid": "$cartDetailId"
+      };
+      print('data : $data');
+
+      http.Response response = await http.post(Uri.parse(url), body: data);
+      AddCartQtyData addCartQtyData = AddCartQtyData.fromJson(json.decode(response.body));
+      isStatus = addCartQtyData.success.obs;
+
+      if(isStatus.value){
+        Get.snackbar(addCartQtyData.message, '');
+      } else {
+        print('Add Qty False');
+      }
+    } catch(e) {
+      print('Add Product Qty Error : $e');
+    } finally {
+      // getUserDetailsFromPrefs();
+      // isLoading(false);
+    }
+    getUserDetailsFromPrefs();
+  }
 
   // getDeleteProductCart(cartDetailId) async {
   //   isLoading(true);
