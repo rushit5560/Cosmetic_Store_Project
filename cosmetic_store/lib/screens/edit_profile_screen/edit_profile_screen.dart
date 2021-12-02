@@ -5,6 +5,7 @@ import 'package:cosmetic_store/models/edit_profile_screen_model/city_model.dart'
 import 'package:cosmetic_store/models/edit_profile_screen_model/country_model.dart';
 import 'package:cosmetic_store/models/edit_profile_screen_model/state_model.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 
 class EditProfileScreen extends StatelessWidget {
@@ -456,11 +457,22 @@ class EditProfileScreen extends StatelessWidget {
   Widget updateButton() {
     return GestureDetector(
       onTap: () {
-        if(formKey.currentState!.validate()){
-          editProfileScreenController
-              .updateProfileData("${userNameController.text.trim()}");
-          clearTextFields();
+        if (formKey.currentState!.validate()) {
+
+          if(editProfileScreenController.countryDropDownValue!.name == "Select Country"){
+            Fluttertoast.showToast(msg: 'Please Select Country', toastLength: Toast.LENGTH_LONG);
+          }
+          else if(editProfileScreenController.stateDropDownValue!.name == "Select State"){
+            Fluttertoast.showToast(msg: 'Please Select State', toastLength: Toast.LENGTH_LONG);
+          }
+          else if (editProfileScreenController.cityDropDownValue!.name == "Select City") {
+            Fluttertoast.showToast(msg: 'Please Select City', toastLength: Toast.LENGTH_LONG);
+          } else {
+            editProfileScreenController.updateProfileData("${userNameController.text.trim()}");
+            clearTextFields();
+          }
         }
+
       },
       child: Container(
         width: Get.width,

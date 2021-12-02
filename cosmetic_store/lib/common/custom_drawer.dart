@@ -1,4 +1,5 @@
 import 'package:cosmetic_store/common/app_images.dart';
+import 'package:cosmetic_store/screens/category_screen/category_screen.dart';
 import 'package:cosmetic_store/screens/collection_screen/collection_screen.dart';
 import 'package:cosmetic_store/screens/contactus_screen/contactus_screen.dart';
 import 'package:cosmetic_store/screens/index_screen/index_screen.dart';
@@ -36,6 +37,8 @@ class CustomDrawer extends StatelessWidget {
                       profileButton(),
                       divider(),
                       collectionButton(),
+                      divider(),
+                      categoryButton(),
                       divider(),
                       settingsButton(),
                       divider(),
@@ -164,6 +167,24 @@ class CustomDrawer extends StatelessWidget {
       ),
       title: Text(
         'Collection',
+        textScaleFactor: 1.2,
+        style: TextStyle(color: Colors.black),
+      ),
+    );
+  }
+
+  Widget categoryButton() {
+    return ListTile(
+      onTap: () {
+        Get.back();
+        Get.to(() => CategoryScreen());
+      },
+      leading: Icon(
+        Icons.category_outlined,
+        color: Colors.black,
+      ),
+      title: Text(
+        'Category',
         textScaleFactor: 1.2,
         style: TextStyle(color: Colors.black),
       ),

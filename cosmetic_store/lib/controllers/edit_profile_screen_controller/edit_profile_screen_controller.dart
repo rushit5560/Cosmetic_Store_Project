@@ -33,9 +33,10 @@ class EditProfileScreenController extends GetxController {
 
       if(isStatus.value){
         countryLists.clear();
-        countryLists = countryList.data.obs;
+        countryLists.add(Datum(id: 0, name: 'Select Country', sortname: ''));
+        countryLists.addAll(countryList.data);
         countryDropDownValue = countryLists[0];
-        print('countryLists : $countryLists');
+        print('countryLists : ${countryLists.length}');
       } else {
         print('Country False False');
       }
@@ -95,7 +96,6 @@ class EditProfileScreenController extends GetxController {
         cityLists.clear();
         cityLists.add(DatumCity(id: 0, name: 'Select City', stateId: 0));
         cityLists.addAll(cityData.data);
-        cityLists.addAll(cityData.data);
         cityDropDownValue = cityLists[0];
         print('cityLists : ${cityLists.length}');
       } else {
@@ -144,6 +144,7 @@ class EditProfileScreenController extends GetxController {
   void onInit() {
     getAllCountryData();
     getUserDetailsFromPrefs();
+    countryDropDownValue = countryLists[0];
     stateDropDownValue = stateLists[0];
     cityDropDownValue = cityLists[0];
     super.onInit();
