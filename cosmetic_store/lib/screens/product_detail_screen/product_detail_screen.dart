@@ -1,6 +1,9 @@
+import 'package:cosmetic_store/common/api_url.dart';
 import 'package:cosmetic_store/common/app_images.dart';
 import 'package:cosmetic_store/common/app_color.dart';
+import 'package:cosmetic_store/common/common_widgets.dart';
 import 'package:cosmetic_store/common/read_more_text.dart';
+import 'package:cosmetic_store/controllers/product_details_screen_controller/product_details_screen_controller.dart';
 import 'package:cosmetic_store/models/product_detail_screen_model/review_model.dart';
 import 'package:cosmetic_store/screens/cart_screen/cart_screen.dart';
 import 'package:flutter/cupertino.dart';
@@ -9,22 +12,8 @@ import 'package:get/get.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 
 
-class ProductDetailScreen extends StatefulWidget {
-  @override
-  _ProductDetailScreenState createState() => _ProductDetailScreenState();
-}
-
-class _ProductDetailScreenState extends State<ProductDetailScreen> {
-  List relatedImgList = [
-    AppImages.collection2,
-    AppImages.collection3,
-    AppImages.collection4,
-    AppImages.collection4,
-    AppImages.collection4,
-  ];
-
-  String desText =
-      'Processor: AMD Ryzen 9 5900HS, 2.8 GHz Base Speed, Up to 4.6 GHz TurboBoost Speed, 8 Cores, 16 Threads, 20M Cache Display: 35.56 cm (14-inch) WQHD (2560 x 1440) 16:9 LED-Backlit LCD, 120Hz Refresh Rate, IPS-level Anti-Glare Panel, 100% DCI-P3, Pantone Validated Graphics: Dedicated NVIDIA GeForce RTX 3060 GDDR6 6GB VRAM, With ROG Boost up to 1382MHz at 60W TGP + 20W with Dynamic Boost';
+class ProductDetailScreen extends StatelessWidget {
+  ProductDetailsScreenController productDetailsScreenController = Get.put(ProductDetailsScreenController());
 
   List<ReviewInfo> reviewList = [
     ReviewInfo(
@@ -65,8 +54,6 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
     ),
   ];
 
-  bool viewMoreValue = false;
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -76,18 +63,22 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
         ),
       ),
 
-      body: SingleChildScrollView(
-        physics: BouncingScrollPhysics(),
-        child: Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Column(
-            children: [
-              productDetails(),
-              SizedBox(height: 15),
-              showReviews(),
-            ],
-          ),
-        ),
+      body: Obx(
+        () => productDetailsScreenController.isLoading.value
+            ? CustomCircularProgressIndicator()
+            : SingleChildScrollView(
+                physics: BouncingScrollPhysics(),
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Column(
+                    children: [
+                      productDetails(),
+                      SizedBox(height: 15),
+                      showReviews(),
+                    ],
+                  ),
+                ),
+              ),
       ),
     );
   }
@@ -97,7 +88,10 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
         Text(
-            'Lorem ipsum dolor sit',
+            '${productDetailsScreenController.productDetailLists[0].productname}',
+          maxLines: 2,
+          textAlign: TextAlign.center,
+          overflow: TextOverflow.ellipsis,
           style: TextStyle(
             fontWeight: FontWeight.bold,
             fontSize: 18,
@@ -105,7 +99,7 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
         ),
         SizedBox(height: 10),
         Text(
-          '\$50',
+          '\$${productDetailsScreenController.productDetailLists[0].productcost}',
           style: TextStyle(
             fontWeight: FontWeight.bold,
             fontSize: 18,
@@ -128,7 +122,10 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                     decoration: BoxDecoration(
                         shape: BoxShape.circle,
                         image: DecorationImage(
-                          image: AssetImage(AppImages.collection1),
+                          image: NetworkImage(
+                            ApiUrl.ApiMainPath +
+                              "${productDetailsScreenController.productDetailLists[0].images[0]}"
+                          ),
                         )
                     ),
                   ),
@@ -155,7 +152,7 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
         SizedBox(height: 15),
         Container(
           child: ReadMoreText(
-            desText,
+            '${productDetailsScreenController.productDetailLists[0].fullText}',
             trimLines: 4,
             colorClickableText: AppColors.kTometoColor,
             trimMode: TrimMode.Line,
@@ -172,11 +169,12 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
     return Container(
       height: 120,
       child: ListView.builder(
-        itemCount: relatedImgList.length,
+        itemCount: productDetailsScreenController.productDetailLists[0].images.length,
         physics: BouncingScrollPhysics(),
         shrinkWrap: true,
         scrollDirection: Axis.horizontal,
         itemBuilder: (context, index){
+          final imgUrl = ApiUrl.ApiMainPath + '${productDetailsScreenController.productDetailLists[0].images[index]}';
           return Padding(
             padding: const EdgeInsets.all(8.0),
             child: Container(
@@ -186,9 +184,9 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                 color: AppColors.kCollection2,
               ),
               child: Padding(
-                padding: const EdgeInsets.all(8.0),
+                padding: const EdgeInsets.all(16),
                 child: Image(
-                  image: AssetImage(relatedImgList[index]),
+                  image: NetworkImage('$imgUrl'),
                 ),
               ),
             ),
@@ -204,7 +202,7 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
       children: [
         Container(
           child: ListView.builder(
-            itemCount: viewMoreValue ? reviewList.length : 3,
+            itemCount: productDetailsScreenController.viewMoreValue.value ? reviewList.length : 3,
             physics: NeverScrollableScrollPhysics(),
             shrinkWrap: true,
             itemBuilder: (context, index) {
@@ -281,13 +279,12 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
           padding: EdgeInsets.symmetric(horizontal: 10),
           child: GestureDetector(
             onTap: () {
-              setState(() {
-                viewMoreValue = !viewMoreValue;
-              });
-              print(viewMoreValue);
+              productDetailsScreenController.viewMoreValue.value = !productDetailsScreenController.viewMoreValue.value;
+
+              print("viewMoreValue : ${productDetailsScreenController.viewMoreValue.value}");
             },
             child: Text(
-              viewMoreValue ? 'View Less' : 'View More',
+              productDetailsScreenController.viewMoreValue.value ? 'View Less' : 'View More',
               textScaleFactor: 1.1,
               style: TextStyle(
                   fontWeight: FontWeight.bold,

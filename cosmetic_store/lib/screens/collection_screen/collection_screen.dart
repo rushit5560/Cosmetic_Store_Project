@@ -46,7 +46,10 @@ class CollectionScreen extends StatelessWidget {
                     padding: const EdgeInsets.all(10),
                     child: GestureDetector(
                       onTap: () {
-                        Get.to(() => ProductDetailScreen());
+                        Get.to(
+                          () => ProductDetailScreen(),
+                          arguments: collectionScreenController.collectionLists[index].id,
+                        );
                       },
                       child: Container(
                         decoration: BoxDecoration(
