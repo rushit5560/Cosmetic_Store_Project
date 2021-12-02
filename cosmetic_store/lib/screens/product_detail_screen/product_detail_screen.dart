@@ -1,11 +1,9 @@
 import 'package:cosmetic_store/common/api_url.dart';
-import 'package:cosmetic_store/common/app_images.dart';
 import 'package:cosmetic_store/common/app_color.dart';
 import 'package:cosmetic_store/common/common_widgets.dart';
 import 'package:cosmetic_store/common/read_more_text.dart';
 import 'package:cosmetic_store/controllers/product_details_screen_controller/product_details_screen_controller.dart';
-import 'package:cosmetic_store/models/product_detail_screen_model/review_model.dart';
-import 'package:cosmetic_store/screens/cart_screen/cart_screen.dart';
+import 'package:cosmetic_store/models/product_detail_screen_model/get_product_review_model.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -14,45 +12,7 @@ import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 
 class ProductDetailScreen extends StatelessWidget {
   ProductDetailsScreenController productDetailsScreenController = Get.put(ProductDetailsScreenController());
-
-  List<ReviewInfo> reviewList = [
-    ReviewInfo(
-      imgUrl: AppImages.profile,
-      userName: 'Tokyo',
-      stars: '4',
-      description: 'Processor: AMD Ryzen 9 5900HS, 2.8 GHz Base Speed, Up to 4.6 GHz TurboBoost Speed, 8 Cores, 16 Threads, 20M Cache Display: 35.56 cm (14-inch) WQHD (2560 x 1440) 16:9 LED-Backlit LCD',
-    ),
-    ReviewInfo(
-      imgUrl: AppImages.profile,
-      userName: 'Arturito',
-      stars: '4.5',
-      description: 'Processor: AMD Ryzen 9 5900HS, 2.8 GHz Base Speed, Up to 4.6 GHz TurboBoost Speed, 8 Cores, 16 Threads, 20M Cache Display: 35.56 cm (14-inch) WQHD (2560 x 1440) 16:9 LED-Backlit LCD',
-    ),
-    ReviewInfo(
-      imgUrl: AppImages.profile,
-      userName: 'Berline',
-      stars: '4.5',
-      description: 'Processor: AMD Ryzen 9 5900HS, 2.8 GHz Base Speed, Up to 4.6 GHz TurboBoost Speed, 8 Cores, 16 Threads, 20M Cache Display: 35.56 cm (14-inch) WQHD (2560 x 1440) 16:9 LED-Backlit LCD',
-    ),
-    ReviewInfo(
-      imgUrl: AppImages.profile,
-      userName: 'Neirobi',
-      stars: '4.5',
-      description: 'Processor: AMD Ryzen 9 5900HS, 2.8 GHz Base Speed, Up to 4.6 GHz TurboBoost Speed, 8 Cores, 16 Threads, 20M Cache Display: 35.56 cm (14-inch) WQHD (2560 x 1440) 16:9 LED-Backlit LCD',
-    ),
-    ReviewInfo(
-      imgUrl: AppImages.profile,
-      userName: 'Tokyo',
-      stars: '4',
-      description: 'Processor: AMD Ryzen 9 5900HS, 2.8 GHz Base Speed, Up to 4.6 GHz TurboBoost Speed, 8 Cores, 16 Threads, 20M Cache Display: 35.56 cm (14-inch) WQHD (2560 x 1440) 16:9 LED-Backlit LCD',
-    ),
-    ReviewInfo(
-      imgUrl: AppImages.profile,
-      userName: 'Tokyo',
-      stars: '4',
-      description: 'Processor: AMD Ryzen 9 5900HS, 2.8 GHz Base Speed, Up to 4.6 GHz TurboBoost Speed, 8 Cores, 16 Threads, 20M Cache Display: 35.56 cm (14-inch) WQHD (2560 x 1440) 16:9 LED-Backlit LCD',
-    ),
-  ];
+  TextEditingController reviewFieldController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -75,6 +35,8 @@ class ProductDetailScreen extends StatelessWidget {
                       productDetails(),
                       SizedBox(height: 15),
                       showReviews(),
+                      SizedBox(height: 15),
+                      giveReview(),
                     ],
                   ),
                 ),
@@ -202,33 +164,35 @@ class ProductDetailScreen extends StatelessWidget {
       children: [
         Container(
           child: ListView.builder(
-            itemCount: productDetailsScreenController.viewMoreValue.value ? reviewList.length : 3,
+            itemCount: productDetailsScreenController.viewMoreValue.value ? productDetailsScreenController.productReviewList.length : 3,
             physics: NeverScrollableScrollPhysics(),
             shrinkWrap: true,
             itemBuilder: (context, index) {
+              Datum1 productSingleReview = productDetailsScreenController.productReviewList[index];
               return Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 10),
                 child: Row(
                   children: [
-                    Container(
-                      width: 50, height: 50,
-                      decoration: BoxDecoration(
-                        shape: BoxShape.circle,
-                        image: DecorationImage(
-                          image: AssetImage(reviewList[index].imgUrl),
-                          fit: BoxFit.cover,
-                        )
-                      ),
-                    ),
-                    SizedBox(width: 10),
+                    // Container(
+                    //   width: 50, height: 50,
+                    //   decoration: BoxDecoration(
+                    //     shape: BoxShape.circle,
+                    //     image: DecorationImage(
+                    //       image: AssetImage(reviewList[index].imgUrl),
+                    //       fit: BoxFit.cover,
+                    //     )
+                    //   ),
+                    // ),
+                    // SizedBox(width: 10),
                     Expanded(
                       child: Container(
                         child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Row(
                               children: [
                                 Text(
-                                    reviewList[index].userName,
+                                    '${productSingleReview.username}',
                                   style: TextStyle(
                                     fontWeight: FontWeight.bold,
                                   ),
@@ -243,7 +207,7 @@ class ProductDetailScreen extends StatelessWidget {
                                     itemSize: 15,
                                     minRating: 1,
                                     glow: false,
-                                    // initialRating: 3,
+                                    initialRating: productSingleReview.ratings.toDouble(),
                                     itemBuilder: (context, _) {
                                       return Icon(
                                         Icons.star_rounded,
@@ -259,7 +223,7 @@ class ProductDetailScreen extends StatelessWidget {
                             ),
                             Container(
                               child: Text(
-                                  reviewList[index].description,
+                                productSingleReview.comment,
                                 maxLines: 2,
                                 overflow: TextOverflow.ellipsis,
                               ),
@@ -295,6 +259,82 @@ class ProductDetailScreen extends StatelessWidget {
           ),
         ),
       ],
+    );
+  }
+
+  Widget giveReview() {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 8.0),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            'Give Review',
+            textScaleFactor: 1.3,
+            maxLines: 1,
+            style: TextStyle(fontWeight: FontWeight.bold),
+          ),
+          const SizedBox(height: 10),
+          RatingBar.builder(
+            itemCount: 5,
+            unratedColor: AppColors.kLightYellowColor,
+            allowHalfRating: true,
+            itemSize: 18,
+            minRating: 1,
+            glow: false,
+            initialRating: 0,
+            itemBuilder: (context, _) {
+              return Icon(
+                Icons.star_rounded,
+                color: AppColors.kYellowColor,
+              );
+            },
+            onRatingUpdate: (rating) {
+              productDetailsScreenController.reviewRating = rating;
+            },
+          ),
+          const SizedBox(height: 10),
+          TextFormField(
+            controller: reviewFieldController,
+            maxLines: 3,
+            decoration: InputDecoration(
+              hintText: 'Comment',
+              enabledBorder: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(8),
+                borderSide: BorderSide(color: Colors.grey),
+              ),
+              focusedBorder: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(8),
+                borderSide: BorderSide(color: Colors.grey),
+              ),
+            ),
+          ),
+          const SizedBox(height: 10),
+          GestureDetector(
+            onTap: () {
+              productDetailsScreenController.addProductReview(
+                  "${productDetailsScreenController.reviewRating}",
+                  "${reviewFieldController.text.trim()}");
+              reviewFieldController.clear();
+            },
+            child: Container(
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(30),
+                color: AppColors.kTometoColor,
+              ),
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 8),
+                child: Text(
+                  'Submit',
+                  style: TextStyle(
+                      color: Colors.white
+                  ),
+                ),
+              ),
+            ),
+          ),
+        ],
+      ),
     );
   }
 }
