@@ -1,18 +1,21 @@
 import 'dart:async';
-
 import 'package:cosmetic_store/common/app_color.dart';
+import 'package:cosmetic_store/common/common_widgets.dart';
+import 'package:cosmetic_store/controllers/contact_us_screen__controller/contact_us_screen__controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 class ContactusScreen extends StatelessWidget {
+  ContactUsScreenController contactUsScreenController = Get.put(ContactUsScreenController());
 
   GlobalKey<FormState> formKey = GlobalKey<FormState>();
   TextEditingController userNameController = TextEditingController();
   TextEditingController emailIdController = TextEditingController();
+  TextEditingController phoneController = TextEditingController();
   TextEditingController subjectController = TextEditingController();
   TextEditingController commentController = TextEditingController();
-  String? username, email, subject, comment;
+  String? username, email, phoneNo, subject, comment;
 
   @override
   Widget build(BuildContext context) {
@@ -23,22 +26,26 @@ class ContactusScreen extends StatelessWidget {
         ),
       ),
 
-      body: Padding(
-        padding: EdgeInsets.all(10),
-        child: SingleChildScrollView(
-          physics: BouncingScrollPhysics(),
-          child: Column(
-            mainAxisSize: MainAxisSize.max,
-            children: [
-              mapView(),
-              SizedBox(height: 20),
-              contactForm(),
-              SizedBox(height: 20),
-              contactUsButton(),
-              SizedBox(height: 10),
-            ],
-          ),
-        ),
+      body: Obx(
+        () => contactUsScreenController.isLoading.value
+            ? CustomCircularProgressIndicator()
+            : Padding(
+                padding: EdgeInsets.all(10),
+                child: SingleChildScrollView(
+                  physics: BouncingScrollPhysics(),
+                  child: Column(
+                    mainAxisSize: MainAxisSize.max,
+                    children: [
+                      mapView(),
+                      SizedBox(height: 20),
+                      contactForm(),
+                      SizedBox(height: 20),
+                      contactUsButton(),
+                      SizedBox(height: 10),
+                    ],
+                  ),
+                ),
+              ),
       ),
     );
   }
@@ -97,23 +104,10 @@ class ContactusScreen extends StatelessWidget {
                 controller: userNameController,
                 validator: (value) {
                   if(value!.isEmpty){
-                    return 'UserName can\'t be Null';
+                    return 'UserName can\'t be Empty';
                   }
                 },
-                decoration: InputDecoration(
-                    hintText: "UserName",
-                    isDense: true,
-                    contentPadding: EdgeInsets.symmetric(horizontal: 20,vertical: 10),
-                    enabledBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(30)
-                    ),
-                    focusedBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(30)
-                    ),
-                  errorBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(30)
-                  ),
-                ),
+                decoration: inputDecoration('UserName', 30),
               ),
               SizedBox(height: 15),
 
@@ -123,26 +117,29 @@ class ContactusScreen extends StatelessWidget {
                 keyboardType: TextInputType.emailAddress,
                 validator: (value) {
                   if(value!.isEmpty){
-                    return 'Email can\'t be Null';
+                    return 'Email can\'t be Empty';
                   }
                   else if(!value.contains('@')){
                     return 'Email should be Valid';
                   }
                 },
-                decoration: InputDecoration(
-                    hintText: "Email Id",
-                    isDense: true,
-                    contentPadding: EdgeInsets.symmetric(horizontal: 20,vertical: 10),
-                    enabledBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(30)
-                    ),
-                    focusedBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(30)
-                    ),
-                  errorBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(30)
-                  ),
-                ),
+                decoration: inputDecoration('Email Id', 30),
+              ),
+              SizedBox(height: 15),
+
+              TextFormField(
+                cursorColor: AppColors.kTometoColor,
+                controller: phoneController,
+                validator: (value) {
+                  if(value!.isEmpty){
+                    return 'Phone No can\'t be Empty';
+                  } else if(value.length != 10){
+                    return 'Enter Valid Phone Number';
+                  }
+                },
+                maxLength: 10,
+                keyboardType: TextInputType.number,
+                decoration: inputDecoration('Phone No', 30),
               ),
               SizedBox(height: 15),
 
@@ -151,23 +148,10 @@ class ContactusScreen extends StatelessWidget {
                 controller: subjectController,
                 validator: (value) {
                   if(value!.isEmpty){
-                    return 'Subject can\'t be Null';
+                    return 'Subject can\'t be Empty';
                   }
                 },
-                decoration: InputDecoration(
-                    hintText: "Subject",
-                    isDense: true,
-                    contentPadding: EdgeInsets.symmetric(horizontal: 20,vertical: 10),
-                    enabledBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(30)
-                    ),
-                    focusedBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(30)
-                    ),
-                  errorBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(30)
-                  ),
-                ),
+                decoration: inputDecoration('Subject', 30),
               ),
               SizedBox(height: 15),
 
@@ -176,24 +160,11 @@ class ContactusScreen extends StatelessWidget {
                 controller: commentController,
                 validator: (value) {
                   if(value!.isEmpty){
-                    return 'Comment can\'t be Null';
+                    return 'Comment can\'t be Empty';
                   }
                 },
-                maxLines: 4,
-                decoration: InputDecoration(
-                    hintText: "Comment",
-                    isDense: true,
-                    contentPadding: EdgeInsets.symmetric(horizontal: 20,vertical: 10),
-                    enabledBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(10)
-                    ),
-                    focusedBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(10)
-                    ),
-                  errorBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(10)
-                  ),
-                ),
+                maxLines: 3,
+                decoration: inputDecoration('Comment', 10),
               ),
             ],
           ),
@@ -202,20 +173,44 @@ class ContactusScreen extends StatelessWidget {
     );
   }
 
+  InputDecoration inputDecoration(String hintText, double radius) {
+    return InputDecoration(
+      hintText: "$hintText",
+      counterText: '',
+      isDense: true,
+      contentPadding: EdgeInsets.symmetric(horizontal: 20,vertical: 10),
+      enabledBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(radius)
+      ),
+      focusedBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(radius)
+      ),
+      errorBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(radius)
+      ),
+      focusedErrorBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(radius)
+      ),
+    );
+  }
+
   Widget contactUsButton() {
     return GestureDetector(
       onTap: () {
         username = userNameController.text.trim();
-        email = emailIdController.text.trim();
+        email = emailIdController.text.trim().toLowerCase();
+        phoneNo = phoneController.text.trim();
         subject = subjectController.text.trim();
         comment = commentController.text.trim();
 
         if(formKey.currentState!.validate()) {
-          print('$username &&& $email &&& $subject &&& $comment');
-          userNameController.clear();
-          emailIdController.clear();
-          subjectController.clear();
-          commentController.clear();
+          contactUsScreenController.getContactUsData(
+            "$username",
+            "$email",
+            "$phoneNo",
+            "$subject",
+            "$comment",
+          );
         }
       },
       child: Container(
