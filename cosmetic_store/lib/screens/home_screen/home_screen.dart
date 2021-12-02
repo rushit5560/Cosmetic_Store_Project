@@ -1,6 +1,9 @@
+import 'package:cosmetic_store/common/api_url.dart';
 import 'package:cosmetic_store/common/app_images.dart';
 import 'package:cosmetic_store/common/app_color.dart';
+import 'package:cosmetic_store/common/common_widgets.dart';
 import 'package:cosmetic_store/common/custom_drawer.dart';
+import 'package:cosmetic_store/controllers/home_screen_controller/home_screen_controller.dart';
 import 'package:cosmetic_store/screens/cart_screen/cart_screen.dart';
 import 'package:cosmetic_store/screens/category_screen/category_screen.dart';
 import 'package:cosmetic_store/screens/product_detail_screen/product_detail_screen.dart';
@@ -11,32 +14,27 @@ import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 import '../../models/home_screen_model/newarrivals_model.dart';
 
-class HomeScreen extends StatefulWidget {
-  const HomeScreen({Key? key}) : super(key: key);
+class HomeScreen extends StatelessWidget {
 
-  @override
-  _HomeScreenState createState() => _HomeScreenState();
-}
-
-class _HomeScreenState extends State<HomeScreen> {
-
-  int activeIndex = 0;
-
-  List bannerImgList = [
-    AppImages.banner1,
-    AppImages.banner2,
-    AppImages.banner3,
-  ];
+  HomeScreenController homeScreenController = Get.put(HomeScreenController());
 
   final categoryList = [
-    AppImages.category1, AppImages.category2,
-    AppImages.category3, AppImages.category4,
-    AppImages.category5, AppImages.category6,
-    AppImages.category7, AppImages.category8,
-    AppImages.category9, AppImages.category10,
-    AppImages.category11, AppImages.category12,
-    AppImages.category11, AppImages.category12,
-    AppImages.category11, AppImages.category12,
+    AppImages.category1,
+    AppImages.category2,
+    AppImages.category3,
+    AppImages.category4,
+    AppImages.category5,
+    AppImages.category6,
+    AppImages.category7,
+    AppImages.category8,
+    AppImages.category9,
+    AppImages.category10,
+    AppImages.category11,
+    AppImages.category12,
+    AppImages.category11,
+    AppImages.category12,
+    AppImages.category11,
+    AppImages.category12,
   ];
 
   List<NewArrivalsModel> newArrivalsList = [
@@ -129,56 +127,58 @@ class _HomeScreenState extends State<HomeScreen> {
         actions: [
           IconButton(
             onPressed: () {
-              Get.to(()=> CartScreen());
+              Get.to(() => CartScreen());
             },
             icon: Icon(Icons.shopping_cart_rounded),
           )
         ],
       ),
       drawer: CustomDrawer(),
-      body: SingleChildScrollView(
-        physics: BouncingScrollPhysics(),
-        child: Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Column(
-            children: [
-              Stack(
-                alignment: Alignment.bottomCenter,
-                children: [
-                  carouselSlider(),
-                  Positioned(
-                    bottom: 5,
-                      child: carouselIndicator(),
+      body: Obx(
+        () => homeScreenController.isLoading.value
+            ? CustomCircularProgressIndicator()
+            : SingleChildScrollView(
+                physics: BouncingScrollPhysics(),
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Column(
+                    children: [
+                      Stack(
+                        alignment: Alignment.bottomCenter,
+                        children: [
+                          carouselSlider(),
+                          Positioned(
+                            bottom: 5,
+                            child: carouselIndicator(),
+                          ),
+                        ],
+                      ),
+                      SizedBox(height: 15),
+                      category(),
+                      SizedBox(height: 15),
+                      newArrivals(),
+                    ],
                   ),
-                ],
+                ),
               ),
-              SizedBox(height: 15),
-              category(),
-              SizedBox(height: 15),
-              newArrivals(),
-            ],
-          ),
-        ),
       ),
     );
   }
 
   Widget carouselSlider() {
     return CarouselSlider.builder(
-      itemCount: bannerImgList.length,
+      itemCount: homeScreenController.bannerLists.length,
       itemBuilder: (context, index, realIndex) {
-        final imgUrl = bannerImgList[index];
+        final imgUrl = ApiUrl.ApiMainPath +
+            "${homeScreenController.bannerLists[index].imagePath}";
         return buildImage(imgUrl, index);
       },
       options: CarouselOptions(
           height: 160,
           autoPlay: true,
-          // autoPlayInterval: Duration(seconds: 3),
           viewportFraction: 1,
           onPageChanged: (index, reason) {
-            setState(() {
-              activeIndex = index;
-            });
+            homeScreenController.activeIndex.value = index;
           }),
     );
   }
@@ -190,7 +190,7 @@ class _HomeScreenState extends State<HomeScreen> {
         borderRadius: BorderRadius.circular(10),
         color: Colors.grey,
         image: DecorationImage(
-          image: AssetImage(urlImage),
+          image: NetworkImage(urlImage),
           fit: BoxFit.cover,
         ),
       ),
@@ -200,8 +200,8 @@ class _HomeScreenState extends State<HomeScreen> {
 
   Widget carouselIndicator() {
     return AnimatedSmoothIndicator(
-      activeIndex: activeIndex,
-      count: bannerImgList.length,
+      activeIndex: homeScreenController.activeIndex.value,
+      count: homeScreenController.bannerLists.length,
       effect: WormEffect(
         dotHeight: 11,
         dotWidth: 11,
@@ -217,16 +217,21 @@ class _HomeScreenState extends State<HomeScreen> {
         Row(
           children: [
             Text(
-                'Category',
+              'Category',
               style: TextStyle(
                 fontWeight: FontWeight.bold,
               ),
             ),
             SizedBox(width: 10),
-            Expanded(child: Divider(thickness: 2,color: Colors.black,)),
+            Expanded(
+                child: Divider(
+              thickness: 2,
+              color: Colors.black,
+            )),
             SizedBox(width: 10),
             Container(
-              width: 10, height: 10,
+              width: 10,
+              height: 10,
               decoration: BoxDecoration(
                 color: Colors.black,
                 shape: BoxShape.circle,
@@ -234,7 +239,8 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
             SizedBox(width: 2),
             Container(
-              width: 10, height: 10,
+              width: 10,
+              height: 10,
               decoration: BoxDecoration(
                 color: Colors.black,
                 shape: BoxShape.circle,
@@ -242,7 +248,6 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
           ],
         ),
-
         SizedBox(height: 10),
         Container(
           height: 100,
@@ -262,7 +267,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 child: GestureDetector(
                   onTap: () {
                     print('Clicked On Index Number : $index');
-                    Get.to(()=> CategoryScreen());
+                    Get.to(() => CategoryScreen());
                   },
                   child: Container(
                     decoration: BoxDecoration(
@@ -277,8 +282,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             shape: BoxShape.circle,
                             image: DecorationImage(
                               image: AssetImage(categoryList[index]),
-                            )
-                        ),
+                            )),
                       ),
                     ),
                   ),
@@ -304,7 +308,8 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
             SizedBox(width: 10),
             Container(
-              width: 10, height: 10,
+              width: 10,
+              height: 10,
               decoration: BoxDecoration(
                 color: Colors.black,
                 shape: BoxShape.circle,
@@ -312,32 +317,34 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
             SizedBox(width: 2),
             Container(
-              width: 10, height: 10,
+              width: 10,
+              height: 10,
               decoration: BoxDecoration(
                 color: Colors.black,
                 shape: BoxShape.circle,
               ),
             ),
             SizedBox(width: 10),
-            Expanded(child: Divider(thickness: 2,color: Colors.black,)),
-
-
-
+            Expanded(
+                child: Divider(
+              thickness: 2,
+              color: Colors.black,
+            )),
           ],
         ),
-
         GridView.builder(
           itemCount: newArrivalsList.length,
           physics: BouncingScrollPhysics(),
           shrinkWrap: true,
           gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
             crossAxisCount: 2,
-            crossAxisSpacing: 10, mainAxisSpacing: 10,
+            crossAxisSpacing: 10,
+            mainAxisSpacing: 10,
           ),
-          itemBuilder: (context, index){
+          itemBuilder: (context, index) {
             return GestureDetector(
               onTap: () {
-                Get.to(()=> ProductDetailScreen());
+                Get.to(() => ProductDetailScreen());
               },
               child: Column(
                 children: [
@@ -345,8 +352,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     child: Container(
                       decoration: BoxDecoration(
                           shape: BoxShape.circle,
-                          color: AppColors.kCollection1
-                      ),
+                          color: AppColors.kCollection1),
                       child: Padding(
                         padding: const EdgeInsets.all(12),
                         child: Container(
@@ -361,11 +367,12 @@ class _HomeScreenState extends State<HomeScreen> {
                   ),
                   SizedBox(height: 5),
                   Text(
-                      newArrivalsList[index].productTitle,
+                    newArrivalsList[index].productTitle,
                     maxLines: 1,
                     overflow: TextOverflow.clip,
                     style: TextStyle(
-                      color: Colors.black, fontWeight: FontWeight.bold,
+                      color: Colors.black,
+                      fontWeight: FontWeight.bold,
                     ),
                   ),
                   SizedBox(height: 3),
