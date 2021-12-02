@@ -1,5 +1,7 @@
 import 'package:cosmetic_store/common/app_color.dart';
+import 'package:cosmetic_store/screens/change_password_screen/change_password_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class SettingsScreen extends StatefulWidget {
   @override
@@ -33,6 +35,8 @@ class _SettingsScreenState extends State<SettingsScreen> {
             allowEmails(),
             SizedBox(height: 10),
             darkMode(),
+            SizedBox(height: 10),
+            changePassword(),
             SizedBox(height: 10),
 
           ],
@@ -192,6 +196,34 @@ class _SettingsScreenState extends State<SettingsScreen> {
             ],
           ),
           decoration: BoxDecoration(borderRadius: BorderRadius.circular(20)),
+        ),
+      ),
+    );
+  }
+
+  Widget changePassword() {
+    return GestureDetector(
+      onTap: () {
+        Get.to(()=> ChangePasswordScreen());
+      },
+      child: Padding(
+        padding: const EdgeInsets.only(left: 15, right: 15, top: 10),
+        child: Material(
+          borderRadius: BorderRadius.circular(35),
+          elevation: 10,
+          child: Padding(
+            padding: EdgeInsets.symmetric(horizontal: 15, vertical: 12),
+            child: Container(
+              width: Get.width,
+              child: Text(
+                'Change Password',
+                // textScaleFactor: 1.3,
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ),
+          ),
         ),
       ),
     );
