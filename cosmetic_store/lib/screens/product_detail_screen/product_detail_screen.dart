@@ -138,7 +138,7 @@ class ProductDetailScreen extends StatelessWidget {
               child: Container(
                 child: IconButton(
                   onPressed: () {
-                    Get.to(()=> CartScreen());
+                    productDetailsScreenController.productAddToCart();
                   },
                   icon: Icon(Icons.add_shopping_cart_rounded),
                   iconSize: 28,
