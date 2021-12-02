@@ -4,6 +4,7 @@ import 'package:cosmetic_store/common/app_color.dart';
 import 'package:cosmetic_store/common/common_widgets.dart';
 import 'package:cosmetic_store/common/custom_drawer.dart';
 import 'package:cosmetic_store/controllers/home_screen_controller/home_screen_controller.dart';
+import 'package:cosmetic_store/models/home_screen_model/featured_product_model.dart';
 import 'package:cosmetic_store/screens/cart_screen/cart_screen.dart';
 import 'package:cosmetic_store/screens/category_screen/category_screen.dart';
 import 'package:cosmetic_store/screens/product_detail_screen/product_detail_screen.dart';
@@ -11,8 +12,6 @@ import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:get/get.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
-
-import '../../models/home_screen_model/newarrivals_model.dart';
 
 class HomeScreen extends StatelessWidget {
 
@@ -37,88 +36,88 @@ class HomeScreen extends StatelessWidget {
     AppImages.category12,
   ];
 
-  List<NewArrivalsModel> newArrivalsList = [
-    NewArrivalsModel(
-      imgUrl: AppImages.collection1,
-      productTitle: 'Product Name 12121',
-      productPrice: '50',
-    ),
-    NewArrivalsModel(
-      imgUrl: AppImages.collection2,
-      productTitle: 'Product Name',
-      productPrice: '50',
-    ),
-    NewArrivalsModel(
-      imgUrl: AppImages.collection3,
-      productTitle: 'Product Name',
-      productPrice: '50',
-    ),
-    NewArrivalsModel(
-      imgUrl: AppImages.collection4,
-      productTitle: 'Product Name',
-      productPrice: '50',
-    ),
-    NewArrivalsModel(
-      imgUrl: AppImages.collection5,
-      productTitle: 'Product Name',
-      productPrice: '50',
-    ),
-    NewArrivalsModel(
-      imgUrl: AppImages.collection6,
-      productTitle: 'Product Name',
-      productPrice: '50',
-    ),
-    NewArrivalsModel(
-      imgUrl: AppImages.collection7,
-      productTitle: 'Product Name',
-      productPrice: '50',
-    ),
-    NewArrivalsModel(
-      imgUrl: AppImages.collection8,
-      productTitle: 'Product Name',
-      productPrice: '50',
-    ),
-    NewArrivalsModel(
-      imgUrl: AppImages.collection1,
-      productTitle: 'Product Name',
-      productPrice: '50',
-    ),
-    NewArrivalsModel(
-      imgUrl: AppImages.collection2,
-      productTitle: 'Product Name',
-      productPrice: '50',
-    ),
-    NewArrivalsModel(
-      imgUrl: AppImages.collection3,
-      productTitle: 'Product Name',
-      productPrice: '50',
-    ),
-    NewArrivalsModel(
-      imgUrl: AppImages.collection4,
-      productTitle: 'Product Name',
-      productPrice: '50',
-    ),
-    NewArrivalsModel(
-      imgUrl: AppImages.collection5,
-      productTitle: 'Product Name',
-      productPrice: '50',
-    ),
-    NewArrivalsModel(
-      imgUrl: AppImages.collection6,
-      productTitle: 'Product Name',
-      productPrice: '50',
-    ),
-    NewArrivalsModel(
-      imgUrl: AppImages.collection7,
-      productTitle: 'Product Name',
-      productPrice: '50',
-    ),
-    NewArrivalsModel(
-      imgUrl: AppImages.collection8,
-      productTitle: 'Product Name',
-      productPrice: '50',
-    ),
-  ];
+  // List<NewArrivalsModel> newArrivalsList = [
+  //   NewArrivalsModel(
+  //     imgUrl: AppImages.collection1,
+  //     productTitle: 'Product Name 12121',
+  //     productPrice: '50',
+  //   ),
+  //   NewArrivalsModel(
+  //     imgUrl: AppImages.collection2,
+  //     productTitle: 'Product Name',
+  //     productPrice: '50',
+  //   ),
+  //   NewArrivalsModel(
+  //     imgUrl: AppImages.collection3,
+  //     productTitle: 'Product Name',
+  //     productPrice: '50',
+  //   ),
+  //   NewArrivalsModel(
+  //     imgUrl: AppImages.collection4,
+  //     productTitle: 'Product Name',
+  //     productPrice: '50',
+  //   ),
+  //   NewArrivalsModel(
+  //     imgUrl: AppImages.collection5,
+  //     productTitle: 'Product Name',
+  //     productPrice: '50',
+  //   ),
+  //   NewArrivalsModel(
+  //     imgUrl: AppImages.collection6,
+  //     productTitle: 'Product Name',
+  //     productPrice: '50',
+  //   ),
+  //   NewArrivalsModel(
+  //     imgUrl: AppImages.collection7,
+  //     productTitle: 'Product Name',
+  //     productPrice: '50',
+  //   ),
+  //   NewArrivalsModel(
+  //     imgUrl: AppImages.collection8,
+  //     productTitle: 'Product Name',
+  //     productPrice: '50',
+  //   ),
+  //   NewArrivalsModel(
+  //     imgUrl: AppImages.collection1,
+  //     productTitle: 'Product Name',
+  //     productPrice: '50',
+  //   ),
+  //   NewArrivalsModel(
+  //     imgUrl: AppImages.collection2,
+  //     productTitle: 'Product Name',
+  //     productPrice: '50',
+  //   ),
+  //   NewArrivalsModel(
+  //     imgUrl: AppImages.collection3,
+  //     productTitle: 'Product Name',
+  //     productPrice: '50',
+  //   ),
+  //   NewArrivalsModel(
+  //     imgUrl: AppImages.collection4,
+  //     productTitle: 'Product Name',
+  //     productPrice: '50',
+  //   ),
+  //   NewArrivalsModel(
+  //     imgUrl: AppImages.collection5,
+  //     productTitle: 'Product Name',
+  //     productPrice: '50',
+  //   ),
+  //   NewArrivalsModel(
+  //     imgUrl: AppImages.collection6,
+  //     productTitle: 'Product Name',
+  //     productPrice: '50',
+  //   ),
+  //   NewArrivalsModel(
+  //     imgUrl: AppImages.collection7,
+  //     productTitle: 'Product Name',
+  //     productPrice: '50',
+  //   ),
+  //   NewArrivalsModel(
+  //     imgUrl: AppImages.collection8,
+  //     productTitle: 'Product Name',
+  //     productPrice: '50',
+  //   ),
+  // ];
 
   @override
   Widget build(BuildContext context) {
@@ -333,7 +332,7 @@ class HomeScreen extends StatelessWidget {
           ],
         ),
         GridView.builder(
-          itemCount: newArrivalsList.length,
+          itemCount: homeScreenController.featuredProductLists.length,
           physics: BouncingScrollPhysics(),
           shrinkWrap: true,
           gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
@@ -342,9 +341,15 @@ class HomeScreen extends StatelessWidget {
             mainAxisSpacing: 10,
           ),
           itemBuilder: (context, index) {
+            Datum1 featuredProduct = homeScreenController.featuredProductLists[index];
+            final imgUrl = ApiUrl.ApiMainPath + '${homeScreenController.featuredProductLists[index].showimg}';
             return GestureDetector(
               onTap: () {
-                Get.to(() => ProductDetailScreen());
+                Get.to(
+                  () => ProductDetailScreen(),
+                  arguments:
+                      homeScreenController.featuredProductLists[index].id,
+                );
               },
               child: Column(
                 children: [
@@ -354,11 +359,11 @@ class HomeScreen extends StatelessWidget {
                           shape: BoxShape.circle,
                           color: AppColors.kCollection1),
                       child: Padding(
-                        padding: const EdgeInsets.all(12),
+                        padding: const EdgeInsets.all(22),
                         child: Container(
                           decoration: BoxDecoration(
                             image: DecorationImage(
-                              image: AssetImage(newArrivalsList[index].imgUrl),
+                              image: NetworkImage('$imgUrl'),
                             ),
                           ),
                         ),
@@ -367,7 +372,7 @@ class HomeScreen extends StatelessWidget {
                   ),
                   SizedBox(height: 5),
                   Text(
-                    newArrivalsList[index].productTitle,
+                    '${featuredProduct.productname}',
                     maxLines: 1,
                     overflow: TextOverflow.clip,
                     style: TextStyle(
@@ -377,7 +382,7 @@ class HomeScreen extends StatelessWidget {
                   ),
                   SizedBox(height: 3),
                   Text(
-                    '\$${newArrivalsList[index].productPrice}',
+                    '\$${featuredProduct.productcost}',
                     style: TextStyle(
                       color: AppColors.kTometoColor,
                       fontWeight: FontWeight.bold,
