@@ -1,35 +1,14 @@
-import 'package:cosmetic_store/common/app_images.dart';
+import 'package:cosmetic_store/common/api_url.dart';
 import 'package:cosmetic_store/common/app_color.dart';
-import 'package:cosmetic_store/models/cart_screen_model/cart_model.dart';
+import 'package:cosmetic_store/common/common_widgets.dart';
+import 'package:cosmetic_store/controllers/cart_screen_controller/cart_screen_controller.dart';
 import 'package:cosmetic_store/screens/checkout_screen/checkout_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 
 class CartScreen extends StatelessWidget {
-
-  List<SingleCartItem> cartItems = [
-    SingleCartItem(
-      productImgUrl: AppImages.collection1,
-      productName: 'lorem ipsum dolor sit',
-      activeAmount: '50',
-    ),
-    SingleCartItem(
-      productImgUrl: AppImages.collection2,
-      productName: 'lorem ipsum dolor sit',
-      activeAmount: '70',
-    ),
-    SingleCartItem(
-      productImgUrl: AppImages.collection3,
-      productName: 'lorem ipsum dolor sit',
-      activeAmount: '85',
-    ),
-    SingleCartItem(
-      productImgUrl: AppImages.collection4,
-      productName: 'lorem ipsum dolor sit',
-      activeAmount: '99',
-    ),
-  ];
+  CartScreenController cartScreenController = Get.put(CartScreenController());
 
   @override
   Widget build(BuildContext context) {
@@ -42,24 +21,28 @@ class CartScreen extends StatelessWidget {
           ),
         ),
 
-        body: SingleChildScrollView(
-          physics: BouncingScrollPhysics(),
-          child: Column(
-            children: [
-              SizedBox(height: 10),
-              cartItemsList(),
-              SizedBox(height: 10),
-              couponCodeField(),
-              SizedBox(height: 10),
-              subTotal(),
-              tax(),
-              discount(),
-              total(),
-              SizedBox(height: 20),
-              checkoutButton(),
-              SizedBox(height: 20),
-              ],
-          ),
+        body: Obx(
+            ()=> cartScreenController.isLoading.value
+            ? CustomCircularProgressIndicator()
+            : SingleChildScrollView(
+                  physics: BouncingScrollPhysics(),
+                  child: Column(
+                    children: [
+                      SizedBox(height: 10),
+                      cartItemsList(),
+                      SizedBox(height: 10),
+                      couponCodeField(),
+                      SizedBox(height: 10),
+                      subTotal(),
+                      tax(),
+                      discount(),
+                      total(),
+                      SizedBox(height: 20),
+                      checkoutButton(),
+                      SizedBox(height: 20),
+                    ],
+                  ),
+                ),
         ),
       ),
     );
@@ -69,10 +52,11 @@ class CartScreen extends StatelessWidget {
   Widget cartItemsList() {
     return Container(
       child: ListView.builder(
-        itemCount: cartItems.length,
+        itemCount: cartScreenController.userCartProductLists.length,
         shrinkWrap: true,
         physics: NeverScrollableScrollPhysics(),
         itemBuilder: (context, index) {
+          final imgUrl = ApiUrl.ApiMainPath + "asset/uploads/product/" + '${cartScreenController.userCartProductLists[index].showimg}';
           return Padding(
             padding: const EdgeInsets.all(8.0),
             child: Container(
@@ -89,10 +73,10 @@ class CartScreen extends StatelessWidget {
                             color: AppColors.kCollection1,
                           ),
                           child: Padding(
-                            padding: const EdgeInsets.all(8.0),
+                            padding: const EdgeInsets.all(10),
                             child: Container(
                               child: Image(
-                                image: AssetImage(cartItems[index].productImgUrl),
+                                image: NetworkImage('$imgUrl'),
                               ),
                             ),
                           ),
@@ -104,10 +88,10 @@ class CartScreen extends StatelessWidget {
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Text(cartItems[index].productName),
+                              Text(cartScreenController.userCartProductLists[index].productname),
                               SizedBox(height: 5),
                               Text(
-                                  '\$${cartItems[index].activeAmount}',
+                                  '\$${cartScreenController.userCartProductLists[index].productcost}',
                                 style: TextStyle(
                                   color: AppColors.kTometoColor,
                                 ),
@@ -123,36 +107,68 @@ class CartScreen extends StatelessWidget {
                     child: Row(
                       children: [
                         Container(
-                          width: 50,
-                          height: 25,
-                          child: TextFormField(
-                            textAlign: TextAlign.center,
-                            inputFormatters: [
-                              LengthLimitingTextInputFormatter(1)
+                          child: Row(
+                            children: [
+                              GestureDetector(
+                                onTap: () {
+                                  // if(cartSingleItem.cquantity > 1) {
+                                  //   int cartQty = cartSingleItem.cquantity;
+                                  //   int cartQtyDec = cartQty - 1;
+                                  //   print('cquantity -- : $cartQtyDec');
+                                  //   cartScreenController.getAddProductCartQty(cartQtyDec, cartSingleItem.cartDetailId);
+                                  //   cartScreenController.getUserDetailsFromPrefs();
+                                  // }
+                                },
+                                child: Icon(Icons.remove_rounded),
+                              ),
+                              Padding(
+                                padding: EdgeInsets.symmetric(horizontal: 5),
+                                child: Text('${cartScreenController.userCartProductLists[index].cquantity}'),
+                              ),
+                              GestureDetector(
+                                onTap: () {
+                                  // int cartQty = cartSingleItem.cquantity;
+                                  // int cartQtyInc = cartQty + 1;
+                                  // print('cquantity ++ : $cartQtyInc');
+                                  // cartScreenController.getAddProductCartQty(cartQtyInc, cartSingleItem.cartDetailId);
+                                  // cartScreenController.getUserDetailsFromPrefs();
+                                },
+                                child: Icon(Icons.add_rounded),
+                              ),
                             ],
-                            style: TextStyle(
-                              fontSize: 12,
-                            ),
-                            cursorColor: Colors.black,
-                            initialValue: '1',
-                            keyboardType: TextInputType.number,
-                            decoration: InputDecoration(
-                              isDense: true,
-                              contentPadding: EdgeInsets.only(
-                                left: 10, right: 10,
-                                bottom: 10,top: 10,
-                              ),
-                              focusedBorder: OutlineInputBorder(
-                                borderSide: BorderSide(color: AppColors.kTometoColor),
-                                borderRadius: BorderRadius.circular(15),
-                              ),
-                              enabledBorder: OutlineInputBorder(
-                                borderSide: BorderSide(color: AppColors.kTometoColor),
-                                borderRadius: BorderRadius.circular(15),
-                              ),
-                            ),
                           ),
                         ),
+                        // Container(
+                        //   width: 50,
+                        //   height: 25,
+                        //   child: TextFormField(
+                        //     textAlign: TextAlign.center,
+                        //     inputFormatters: [
+                        //       LengthLimitingTextInputFormatter(1)
+                        //     ],
+                        //     style: TextStyle(
+                        //       fontSize: 12,
+                        //     ),
+                        //     cursorColor: Colors.black,
+                        //     initialValue: '1',
+                        //     keyboardType: TextInputType.number,
+                        //     decoration: InputDecoration(
+                        //       isDense: true,
+                        //       contentPadding: EdgeInsets.only(
+                        //         left: 10, right: 10,
+                        //         bottom: 10,top: 10,
+                        //       ),
+                        //       focusedBorder: OutlineInputBorder(
+                        //         borderSide: BorderSide(color: AppColors.kTometoColor),
+                        //         borderRadius: BorderRadius.circular(15),
+                        //       ),
+                        //       enabledBorder: OutlineInputBorder(
+                        //         borderSide: BorderSide(color: AppColors.kTometoColor),
+                        //         borderRadius: BorderRadius.circular(15),
+                        //       ),
+                        //     ),
+                        //   ),
+                        // ),
                         Container(
                           child: IconButton(
                             icon: Icon(Icons.delete_rounded),
