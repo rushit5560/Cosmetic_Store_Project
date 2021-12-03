@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'package:cosmetic_store/common/api_url.dart';
+import 'package:cosmetic_store/common/app_images.dart';
 import 'package:cosmetic_store/models/home_screen_model/banner_model.dart';
 import 'package:cosmetic_store/models/home_screen_model/featured_product_model.dart';
 import 'package:get/get.dart';
@@ -14,6 +15,24 @@ class HomeScreenController extends GetxController {
   RxList<Datum> bannerLists = RxList();
   RxList<Datum1> featuredProductLists = RxList();
 
+  final categoryList = [
+    AppImages.category1,
+    AppImages.category2,
+    AppImages.category3,
+    AppImages.category4,
+    AppImages.category5,
+    AppImages.category6,
+    AppImages.category7,
+    AppImages.category8,
+    AppImages.category9,
+    AppImages.category10,
+    AppImages.category11,
+    AppImages.category12,
+    AppImages.category11,
+    AppImages.category12,
+    AppImages.category11,
+    AppImages.category12,
+  ];
 
 
   getBannerData() async {
@@ -62,8 +81,6 @@ class HomeScreenController extends GetxController {
       isLoading(false);
     }
   }
-
-
 
 
   @override
