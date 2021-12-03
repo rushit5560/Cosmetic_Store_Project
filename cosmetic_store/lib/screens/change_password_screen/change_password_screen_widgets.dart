@@ -5,12 +5,12 @@ import 'package:get/get.dart';
 
 class ChangePasswordFieldsModule extends StatelessWidget {
   // const ChangePasswordFieldsModule({Key? key}) : super(key: key);
-  final changePasswordScreenController = Get.find<ChangePasswordScreenController>();
+  final changePasswordScreenController =
+      Get.find<ChangePasswordScreenController>();
   GlobalKey<FormState> formKey;
   TextEditingController oldPasswordFieldController;
   TextEditingController newPasswordFieldController;
   TextEditingController cNewPasswordFieldController;
-
 
   ChangePasswordFieldsModule({
     required this.formKey,
@@ -78,8 +78,8 @@ class ChangePasswordFieldsModule extends StatelessWidget {
               width: Get.width,
               alignment: Alignment.center,
               child: Padding(
-                padding: const EdgeInsets.symmetric(
-                    horizontal: 20, vertical: 10),
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
                 child: Text(
                   'Submit',
                   textScaleFactor: 1.2,
@@ -123,6 +123,4 @@ class ChangePasswordFieldsModule extends StatelessWidget {
       ),
     );
   }
-
-
 }

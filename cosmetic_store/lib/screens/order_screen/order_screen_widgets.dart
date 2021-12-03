@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class OrderList extends StatelessWidget {
-   final orderScreenController = Get.find<OrderScreenController>();
+  final orderScreenController = Get.find<OrderScreenController>();
 
   @override
   Widget build(BuildContext context) {
@@ -12,7 +12,7 @@ class OrderList extends StatelessWidget {
       physics: BouncingScrollPhysics(),
       shrinkWrap: true,
       itemCount: orderScreenController.orderItems.length,
-      itemBuilder: (context, index){
+      itemBuilder: (context, index) {
         return Padding(
           padding: const EdgeInsets.all(5),
           child: Row(
@@ -22,7 +22,8 @@ class OrderList extends StatelessWidget {
                 child: Row(
                   children: [
                     Container(
-                      height: 60, width: 60,
+                      height: 60,
+                      width: 60,
                       decoration: BoxDecoration(
                         shape: BoxShape.circle,
                         color: AppColors.kCollection1,
@@ -30,7 +31,8 @@ class OrderList extends StatelessWidget {
                       child: Padding(
                         padding: const EdgeInsets.all(10),
                         child: Image(
-                          image: AssetImage(orderScreenController.orderItems[index].imgUrl),
+                          image: AssetImage(
+                              orderScreenController.orderItems[index].imgUrl),
                         ),
                       ),
                     ),
@@ -41,9 +43,7 @@ class OrderList extends StatelessWidget {
                         Text(
                           orderScreenController.orderItems[index].name,
                           style: TextStyle(
-                              fontWeight: FontWeight.bold,
-                              fontSize: 15
-                          ),
+                              fontWeight: FontWeight.bold, fontSize: 15),
                         ),
                         SizedBox(height: 3),
                         Text(
@@ -58,9 +58,9 @@ class OrderList extends StatelessWidget {
                   ],
                 ),
               ),
-
               Container(
-                width: 25, height: 25,
+                width: 25,
+                height: 25,
                 decoration: BoxDecoration(
                   color: AppColors.kTometoColor,
                   shape: BoxShape.circle,

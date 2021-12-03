@@ -6,12 +6,14 @@ import 'package:cosmetic_store/controllers/category_collection_screen_controller
 import 'package:cosmetic_store/screens/product_detail_screen/product_detail_screen.dart';
 
 class CategoryCollectionListModule extends StatelessWidget {
-  final categoryCollectionScreenController = Get.find<CategoryCollectionScreenController>();
+  final categoryCollectionScreenController =
+      Get.find<CategoryCollectionScreenController>();
 
   @override
   Widget build(BuildContext context) {
-    return  GridView.builder(
-      itemCount: categoryCollectionScreenController.categoryCollectionLists.length,
+    return GridView.builder(
+      itemCount:
+          categoryCollectionScreenController.categoryCollectionLists.length,
       physics: BouncingScrollPhysics(),
       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
         crossAxisCount: 2,
@@ -26,8 +28,9 @@ class CategoryCollectionListModule extends StatelessWidget {
           child: GestureDetector(
             onTap: () {
               Get.to(
-                    () => ProductDetailScreen(),
-                arguments: categoryCollectionScreenController.categoryCollectionLists[index].id,
+                () => ProductDetailScreen(),
+                arguments: categoryCollectionScreenController
+                    .categoryCollectionLists[index].id,
               );
             },
             child: Container(

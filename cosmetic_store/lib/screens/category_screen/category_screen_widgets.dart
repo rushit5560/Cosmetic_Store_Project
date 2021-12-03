@@ -5,9 +5,8 @@ import 'package:cosmetic_store/common/app_color.dart';
 import 'package:cosmetic_store/screens/category_collection_screen/category_collection_screen.dart';
 import 'package:get/get.dart';
 
-
 class CategoryListModule extends StatelessWidget {
-   final categoryScreenController = Get.find<CategoryScreenController>();
+  final categoryScreenController = Get.find<CategoryScreenController>();
 
   @override
   Widget build(BuildContext context) {
@@ -24,12 +23,12 @@ class CategoryListModule extends StatelessWidget {
           padding: const EdgeInsets.all(5),
           child: GestureDetector(
             onTap: () {
-              print('Cat Id : ${categoryScreenController.categoryLists[index].categoryId}');
-              Get.to(() => CategoryCollectionScreen(),
-                  arguments: [
-                    categoryScreenController.categoryLists[index].categoryId,
-                    categoryScreenController.categoryLists[index].categoryName]
-              );
+              print(
+                  'Cat Id : ${categoryScreenController.categoryLists[index].categoryId}');
+              Get.to(() => CategoryCollectionScreen(), arguments: [
+                categoryScreenController.categoryLists[index].categoryId,
+                categoryScreenController.categoryLists[index].categoryName
+              ]);
             },
             child: Container(
               decoration: BoxDecoration(

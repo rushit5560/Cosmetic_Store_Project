@@ -129,7 +129,7 @@ class ProductDetails extends StatelessWidget {
 
 class ShowReviews extends StatelessWidget {
   final productDetailsScreenController =
-  Get.find<ProductDetailsScreenController>();
+      Get.find<ProductDetailsScreenController>();
 
   @override
   Widget build(BuildContext context) {
@@ -138,13 +138,17 @@ class ShowReviews extends StatelessWidget {
       children: [
         Container(
           child: ListView.builder(
-            itemCount: productDetailsScreenController.viewMoreValue.value ? productDetailsScreenController.productReviewList.length : 3,
+            itemCount: productDetailsScreenController.viewMoreValue.value
+                ? productDetailsScreenController.productReviewList.length
+                : 3,
             physics: NeverScrollableScrollPhysics(),
             shrinkWrap: true,
             itemBuilder: (context, index) {
-              Datum1 productSingleReview = productDetailsScreenController.productReviewList[index];
+              Datum1 productSingleReview =
+                  productDetailsScreenController.productReviewList[index];
               return Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 10),
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 5, vertical: 10),
                 child: Row(
                   children: [
                     // Container(
@@ -181,7 +185,8 @@ class ShowReviews extends StatelessWidget {
                                     itemSize: 15,
                                     minRating: 1,
                                     glow: false,
-                                    initialRating: productSingleReview.ratings.toDouble(),
+                                    initialRating:
+                                        productSingleReview.ratings.toDouble(),
                                     itemBuilder: (context, _) {
                                       return Icon(
                                         Icons.star_rounded,
@@ -212,23 +217,24 @@ class ShowReviews extends StatelessWidget {
             },
           ),
         ),
-
         Container(
           padding: EdgeInsets.symmetric(horizontal: 10),
           child: GestureDetector(
             onTap: () {
-              productDetailsScreenController.viewMoreValue.value = !productDetailsScreenController.viewMoreValue.value;
+              productDetailsScreenController.viewMoreValue.value =
+                  !productDetailsScreenController.viewMoreValue.value;
 
-              print("viewMoreValue : ${productDetailsScreenController.viewMoreValue.value}");
+              print(
+                  "viewMoreValue : ${productDetailsScreenController.viewMoreValue.value}");
             },
             child: Text(
-              productDetailsScreenController.viewMoreValue.value ? 'View Less' : 'View More',
+              productDetailsScreenController.viewMoreValue.value
+                  ? 'View Less'
+                  : 'View More',
               textScaleFactor: 1.1,
               style: TextStyle(
                   fontWeight: FontWeight.bold,
-                  decoration: TextDecoration.underline
-              ),
-
+                  decoration: TextDecoration.underline),
             ),
           ),
         ),
@@ -239,9 +245,8 @@ class ShowReviews extends StatelessWidget {
 
 class GiveReview extends StatelessWidget {
   final productDetailsScreenController =
-  Get.find<ProductDetailsScreenController>();
+      Get.find<ProductDetailsScreenController>();
   TextEditingController reviewFieldController;
-
 
   GiveReview({required this.reviewFieldController});
 
@@ -307,12 +312,11 @@ class GiveReview extends StatelessWidget {
                 color: AppColors.kTometoColor,
               ),
               child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 8),
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 25, vertical: 8),
                 child: Text(
                   'Submit',
-                  style: TextStyle(
-                      color: Colors.white
-                  ),
+                  style: TextStyle(color: Colors.white),
                 ),
               ),
             ),

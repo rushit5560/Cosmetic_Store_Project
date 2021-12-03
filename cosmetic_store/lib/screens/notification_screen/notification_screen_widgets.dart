@@ -16,14 +16,15 @@ class NotificationList extends StatelessWidget {
           child: Row(
             children: [
               Container(
-                height: 60, width: 60,
+                height: 60,
+                width: 60,
                 decoration: BoxDecoration(
                     shape: BoxShape.circle,
                     image: DecorationImage(
-                      image: AssetImage(notificationScreenController.notificationItems[index].img),
+                      image: AssetImage(notificationScreenController
+                          .notificationItems[index].img),
                       fit: BoxFit.cover,
-                    )
-                ),
+                    )),
               ),
               SizedBox(width: 10),
               Expanded(
@@ -31,17 +32,17 @@ class NotificationList extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      notificationScreenController.notificationItems[index].title,
+                      notificationScreenController
+                          .notificationItems[index].title,
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
-                      style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          fontSize: 18
-                      ),
+                      style:
+                          TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
                     ),
                     SizedBox(height: 3),
                     Text(
-                      notificationScreenController.notificationItems[index].description,
+                      notificationScreenController
+                          .notificationItems[index].description,
                       maxLines: 2,
                       overflow: TextOverflow.ellipsis,
                     )
