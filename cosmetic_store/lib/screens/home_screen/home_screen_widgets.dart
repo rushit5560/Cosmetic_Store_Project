@@ -45,8 +45,6 @@ class BannerModule extends StatelessWidget {
       margin: EdgeInsets.symmetric(horizontal: 5),
     );
   }
-
-
 }
 
 class BannerIndicator extends StatelessWidget {
@@ -85,9 +83,9 @@ class CategoryListModule extends StatelessWidget {
             SizedBox(width: 10),
             Expanded(
                 child: Divider(
-                  thickness: 2,
-                  color: Colors.black,
-                )),
+              thickness: 2,
+              color: Colors.black,
+            )),
             SizedBox(width: 10),
             Container(
               width: 10,
@@ -141,7 +139,8 @@ class CategoryListModule extends StatelessWidget {
                             color: Colors.white,
                             shape: BoxShape.circle,
                             image: DecorationImage(
-                              image: AssetImage(homeScreenController.categoryList[index]),
+                              image: AssetImage(
+                                  homeScreenController.categoryList[index]),
                             )),
                       ),
                     ),
@@ -192,9 +191,9 @@ class NewArrivalListModule extends StatelessWidget {
             SizedBox(width: 10),
             Expanded(
                 child: Divider(
-                  thickness: 2,
-                  color: Colors.black,
-                )),
+              thickness: 2,
+              color: Colors.black,
+            )),
           ],
         ),
         GridView.builder(
@@ -207,14 +206,16 @@ class NewArrivalListModule extends StatelessWidget {
             mainAxisSpacing: 10,
           ),
           itemBuilder: (context, index) {
-            Datum1 featuredProduct = homeScreenController.featuredProductLists[index];
-            final imgUrl = ApiUrl.ApiMainPath + '${homeScreenController.featuredProductLists[index].showimg}';
+            Datum1 featuredProduct =
+                homeScreenController.featuredProductLists[index];
+            final imgUrl = ApiUrl.ApiMainPath +
+                '${homeScreenController.featuredProductLists[index].showimg}';
             return GestureDetector(
               onTap: () {
                 Get.to(
-                      () => ProductDetailScreen(),
+                  () => ProductDetailScreen(),
                   arguments:
-                  homeScreenController.featuredProductLists[index].id,
+                      homeScreenController.featuredProductLists[index].id,
                 );
               },
               child: Column(

@@ -125,9 +125,9 @@ class PaymentDetailsModule extends StatelessWidget {
                 isDense: true,
                 counterText: '',
                 contentPadding:
-                EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+                    EdgeInsets.symmetric(horizontal: 20, vertical: 10),
                 border:
-                OutlineInputBorder(borderRadius: BorderRadius.circular(25)),
+                    OutlineInputBorder(borderRadius: BorderRadius.circular(25)),
                 focusedBorder: OutlineInputBorder(
                     borderSide: BorderSide(color: AppColors.kTometoColor),
                     borderRadius: BorderRadius.circular(25)),
@@ -165,7 +165,7 @@ class PaymentDetailsModule extends StatelessWidget {
                     isDense: true,
                     counterText: '',
                     contentPadding:
-                    EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+                        EdgeInsets.symmetric(horizontal: 20, vertical: 10),
                     border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(25)),
                     focusedBorder: OutlineInputBorder(
@@ -204,7 +204,7 @@ class PaymentDetailsModule extends StatelessWidget {
                     isDense: true,
                     counterText: '',
                     contentPadding:
-                    EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+                        EdgeInsets.symmetric(horizontal: 20, vertical: 10),
                     border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(25)),
                     focusedBorder: OutlineInputBorder(
@@ -246,9 +246,9 @@ class PaymentDetailsModule extends StatelessWidget {
             decoration: InputDecoration(
               isDense: true,
               contentPadding:
-              EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+                  EdgeInsets.symmetric(horizontal: 20, vertical: 10),
               border:
-              OutlineInputBorder(borderRadius: BorderRadius.circular(25)),
+                  OutlineInputBorder(borderRadius: BorderRadius.circular(25)),
               focusedBorder: OutlineInputBorder(
                   borderSide: BorderSide(color: AppColors.kTometoColor),
                   borderRadius: BorderRadius.circular(25)),
@@ -295,7 +295,7 @@ class ConfirmationButton extends StatelessWidget {
             cvv = cvvController.text.trim();
             cardHolderName = cardHolderNameController.text.trim();
             print('$cardNo \n$expDate \n$cvv \n$cardHolderName');
-            Get.to(()=> ConfirmationScreen());
+            Get.to(() => ConfirmationScreen());
             clearTextFields();
           }
         },

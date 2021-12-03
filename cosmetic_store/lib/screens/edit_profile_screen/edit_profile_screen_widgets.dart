@@ -9,6 +9,7 @@ import 'package:get/get.dart';
 
 class UserNameField extends StatelessWidget {
   TextEditingController userNameController;
+
   UserNameField({required this.userNameController});
 
   @override
@@ -20,10 +21,7 @@ class UserNameField extends StatelessWidget {
           padding: const EdgeInsets.symmetric(horizontal: 8),
           child: Text(
             'UserName',
-            style: TextStyle(
-                fontWeight: FontWeight.bold,
-                fontSize: 15
-            ),
+            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15),
           ),
         ),
         SizedBox(height: 8),
@@ -31,7 +29,7 @@ class UserNameField extends StatelessWidget {
           cursorColor: Colors.black,
           controller: userNameController,
           validator: (value) {
-            if(value!.isEmpty){
+            if (value!.isEmpty) {
               return 'UserName can\'t be Null';
             }
           },
@@ -40,22 +38,19 @@ class UserNameField extends StatelessWidget {
       ],
     );
   }
+
   InputDecoration _inputDecoration(double radius) {
     return InputDecoration(
       isDense: true,
-      contentPadding: EdgeInsets.symmetric(horizontal: 20,vertical: 10),
-      enabledBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(radius)
-      ),
-      focusedBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(radius)
-      ),
-      errorBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(radius)
-      ),
-      focusedErrorBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(radius)
-      ),
+      contentPadding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+      enabledBorder:
+          OutlineInputBorder(borderRadius: BorderRadius.circular(radius)),
+      focusedBorder:
+          OutlineInputBorder(borderRadius: BorderRadius.circular(radius)),
+      errorBorder:
+          OutlineInputBorder(borderRadius: BorderRadius.circular(radius)),
+      focusedErrorBorder:
+          OutlineInputBorder(borderRadius: BorderRadius.circular(radius)),
     );
   }
 }
@@ -66,7 +61,7 @@ class CountryDropDownModule extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Obx(
-          () => Container(
+      () => Container(
         padding: EdgeInsets.only(left: 10, right: 10),
         width: Get.width,
         height: 43,
@@ -77,7 +72,7 @@ class CountryDropDownModule extends StatelessWidget {
         child: DropdownButton<Datum>(
           value: editProfileScreenController.countryDropDownValue,
           icon:
-          const Icon(Icons.keyboard_arrow_down_rounded, color: Colors.grey),
+              const Icon(Icons.keyboard_arrow_down_rounded, color: Colors.grey),
           style: const TextStyle(color: Colors.grey),
           isExpanded: true,
           underline: Container(
@@ -112,7 +107,7 @@ class StateDropDownModule extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Obx(
-          () => Container(
+      () => Container(
         padding: EdgeInsets.only(left: 10, right: 10),
         width: Get.width,
         height: 43,
@@ -123,7 +118,7 @@ class StateDropDownModule extends StatelessWidget {
         child: DropdownButton<DatumState>(
           value: editProfileScreenController.stateDropDownValue,
           icon:
-          const Icon(Icons.keyboard_arrow_down_rounded, color: Colors.grey),
+              const Icon(Icons.keyboard_arrow_down_rounded, color: Colors.grey),
           style: const TextStyle(color: Colors.grey),
           isExpanded: true,
           underline: Container(
@@ -159,7 +154,7 @@ class CityDropDownModule extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Obx(
-          () => Container(
+      () => Container(
         padding: EdgeInsets.only(left: 10, right: 10),
         width: Get.width,
         height: 43,
@@ -170,7 +165,7 @@ class CityDropDownModule extends StatelessWidget {
         child: DropdownButton<DatumCity>(
           value: editProfileScreenController.cityDropDownValue,
           icon:
-          const Icon(Icons.keyboard_arrow_down_rounded, color: Colors.grey),
+              const Icon(Icons.keyboard_arrow_down_rounded, color: Colors.grey),
           style: const TextStyle(color: Colors.grey),
           isExpanded: true,
           underline: Container(
@@ -204,7 +199,6 @@ class UpdateButton extends StatelessWidget {
   GlobalKey<FormState> formKey;
   TextEditingController userNameController;
 
-
   UpdateButton({required this.formKey, required this.userNameController});
 
   @override
@@ -212,21 +206,24 @@ class UpdateButton extends StatelessWidget {
     return GestureDetector(
       onTap: () {
         if (formKey.currentState!.validate()) {
-
-          if(editProfileScreenController.countryDropDownValue!.name == "Select Country"){
-            Fluttertoast.showToast(msg: 'Please Select Country', toastLength: Toast.LENGTH_LONG);
-          }
-          else if(editProfileScreenController.stateDropDownValue!.name == "Select State"){
-            Fluttertoast.showToast(msg: 'Please Select State', toastLength: Toast.LENGTH_LONG);
-          }
-          else if (editProfileScreenController.cityDropDownValue!.name == "Select City") {
-            Fluttertoast.showToast(msg: 'Please Select City', toastLength: Toast.LENGTH_LONG);
+          if (editProfileScreenController.countryDropDownValue!.name ==
+              "Select Country") {
+            Fluttertoast.showToast(
+                msg: 'Please Select Country', toastLength: Toast.LENGTH_LONG);
+          } else if (editProfileScreenController.stateDropDownValue!.name ==
+              "Select State") {
+            Fluttertoast.showToast(
+                msg: 'Please Select State', toastLength: Toast.LENGTH_LONG);
+          } else if (editProfileScreenController.cityDropDownValue!.name ==
+              "Select City") {
+            Fluttertoast.showToast(
+                msg: 'Please Select City', toastLength: Toast.LENGTH_LONG);
           } else {
-            editProfileScreenController.updateProfileData("${userNameController.text.trim()}");
+            editProfileScreenController
+                .updateProfileData("${userNameController.text.trim()}");
             clearTextFields();
           }
         }
-
       },
       child: Container(
         width: Get.width,

@@ -6,6 +6,7 @@ import 'package:get/get.dart';
 
 class EmailIdField extends StatelessWidget {
   TextEditingController emailController;
+
   EmailIdField({required this.emailController});
 
   @override
@@ -31,6 +32,7 @@ class EmailIdField extends StatelessWidget {
 
 class PasswordField extends StatelessWidget {
   TextEditingController passwordController;
+
   PasswordField({required this.passwordController});
 
   @override
@@ -45,7 +47,7 @@ class PasswordField extends StatelessWidget {
         validator: (value) {
           if (value!.isEmpty) {
             return "Password cannot be empty";
-          } else if(value.length <= 5) {
+          } else if (value.length <= 5) {
             return "Password more then 5 Character";
           }
         },
@@ -66,7 +68,7 @@ class RememberPass extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Obx(
-                ()=> Container(
+            () => Container(
               child: Row(
                 children: [
                   Checkbox(
@@ -75,7 +77,8 @@ class RememberPass extends StatelessWidget {
                     value: signInScreenController.isChecked.value,
                     onChanged: (bool? value) {
                       signInScreenController.isChecked.value = value!;
-                      print("isChecked : ${signInScreenController.isChecked.value}");
+                      print(
+                          "isChecked : ${signInScreenController.isChecked.value}");
                     },
                   ),
                   Text('Remember Password?'),
@@ -106,7 +109,6 @@ class LoginButton extends StatelessWidget {
   GlobalKey<FormState> formKey;
   TextEditingController emailController;
   TextEditingController passwordController;
-
 
   LoginButton({
     required this.formKey,

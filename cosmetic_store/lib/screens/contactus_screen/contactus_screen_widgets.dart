@@ -71,7 +71,6 @@ class ContactFormModule extends StatelessWidget {
           ),
         ),
         SizedBox(height: 10),
-
         Form(
           key: formKey,
           child: Column(
@@ -80,37 +79,34 @@ class ContactFormModule extends StatelessWidget {
                 cursorColor: AppColors.kTometoColor,
                 controller: userNameController,
                 validator: (value) {
-                  if(value!.isEmpty){
+                  if (value!.isEmpty) {
                     return 'UserName can\'t be Empty';
                   }
                 },
                 decoration: inputDecoration('UserName', 30),
               ),
               SizedBox(height: 15),
-
               TextFormField(
                 cursorColor: AppColors.kTometoColor,
                 controller: emailIdController,
                 keyboardType: TextInputType.emailAddress,
                 validator: (value) {
-                  if(value!.isEmpty){
+                  if (value!.isEmpty) {
                     return 'Email can\'t be Empty';
-                  }
-                  else if(!value.contains('@')){
+                  } else if (!value.contains('@')) {
                     return 'Email should be Valid';
                   }
                 },
                 decoration: inputDecoration('Email Id', 30),
               ),
               SizedBox(height: 15),
-
               TextFormField(
                 cursorColor: AppColors.kTometoColor,
                 controller: phoneController,
                 validator: (value) {
-                  if(value!.isEmpty){
+                  if (value!.isEmpty) {
                     return 'Phone No can\'t be Empty';
-                  } else if(value.length != 10){
+                  } else if (value.length != 10) {
                     return 'Enter Valid Phone Number';
                   }
                 },
@@ -119,24 +115,22 @@ class ContactFormModule extends StatelessWidget {
                 decoration: inputDecoration('Phone No', 30),
               ),
               SizedBox(height: 15),
-
               TextFormField(
                 cursorColor: AppColors.kTometoColor,
                 controller: subjectController,
                 validator: (value) {
-                  if(value!.isEmpty){
+                  if (value!.isEmpty) {
                     return 'Subject can\'t be Empty';
                   }
                 },
                 decoration: inputDecoration('Subject', 30),
               ),
               SizedBox(height: 15),
-
               TextFormField(
                 cursorColor: AppColors.kTometoColor,
                 controller: commentController,
                 validator: (value) {
-                  if(value!.isEmpty){
+                  if (value!.isEmpty) {
                     return 'Comment can\'t be Empty';
                   }
                 },
@@ -155,22 +149,17 @@ class ContactFormModule extends StatelessWidget {
       hintText: "$hintText",
       counterText: '',
       isDense: true,
-      contentPadding: EdgeInsets.symmetric(horizontal: 20,vertical: 10),
-      enabledBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(radius)
-      ),
-      focusedBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(radius)
-      ),
-      errorBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(radius)
-      ),
-      focusedErrorBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(radius)
-      ),
+      contentPadding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+      enabledBorder:
+          OutlineInputBorder(borderRadius: BorderRadius.circular(radius)),
+      focusedBorder:
+          OutlineInputBorder(borderRadius: BorderRadius.circular(radius)),
+      errorBorder:
+          OutlineInputBorder(borderRadius: BorderRadius.circular(radius)),
+      focusedErrorBorder:
+          OutlineInputBorder(borderRadius: BorderRadius.circular(radius)),
     );
   }
-
 }
 
 class ContactUsButton extends StatelessWidget {
@@ -202,7 +191,7 @@ class ContactUsButton extends StatelessWidget {
         subject = subjectController.text.trim();
         comment = commentController.text.trim();
 
-        if(formKey.currentState!.validate()) {
+        if (formKey.currentState!.validate()) {
           contactUsScreenController.getContactUsData(
             "$username",
             "$email",
@@ -222,10 +211,7 @@ class ContactUsButton extends StatelessWidget {
         child: Center(
           child: Text(
             'Contact Us',
-            style: TextStyle(
-                color: Colors.white,
-                fontSize: 15
-            ),
+            style: TextStyle(color: Colors.white, fontSize: 15),
           ),
         ),
       ),

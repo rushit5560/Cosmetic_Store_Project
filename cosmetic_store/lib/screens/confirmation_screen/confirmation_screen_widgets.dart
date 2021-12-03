@@ -15,9 +15,8 @@ class ImageAndTextModule extends StatelessWidget {
           height: Get.height * 0.40,
           decoration: BoxDecoration(
               image: DecorationImage(
-                image: AssetImage(AppImages.confirmation),
-              )
-          ),
+            image: AssetImage(AppImages.confirmation),
+          )),
         ),
         SizedBox(height: 10),
         Text(
@@ -39,7 +38,6 @@ class ImageAndTextModule extends StatelessWidget {
   }
 }
 
-
 class BackToHomeButton extends StatelessWidget {
   const BackToHomeButton({Key? key}) : super(key: key);
 
@@ -50,7 +48,7 @@ class BackToHomeButton extends StatelessWidget {
       child: GestureDetector(
         onTap: () {
           print('Clicked On Back To Home');
-          Get.offAll(()=> IndexScreen());
+          Get.offAll(() => IndexScreen());
         },
         child: Container(
           width: Get.width * 0.50,

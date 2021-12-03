@@ -6,6 +6,7 @@ import 'package:get/get.dart';
 
 class UserNameField extends StatelessWidget {
   TextEditingController usernameController;
+
   UserNameField({required this.usernameController});
 
   @override
@@ -29,6 +30,7 @@ class UserNameField extends StatelessWidget {
 
 class EmailIdField extends StatelessWidget {
   TextEditingController emailController;
+
   EmailIdField({required this.emailController});
 
   @override
@@ -52,6 +54,7 @@ class EmailIdField extends StatelessWidget {
 
 class PasswordField extends StatelessWidget {
   TextEditingController passwordController;
+
   PasswordField({required this.passwordController});
 
   @override
@@ -78,6 +81,7 @@ class SignUpButton extends StatelessWidget {
   TextEditingController usernameController;
   TextEditingController emailController;
   TextEditingController passwordController;
+
   SignUpButton({
     required this.formKey,
     required this.usernameController,
@@ -106,15 +110,15 @@ class SignUpButton extends StatelessWidget {
               borderRadius: BorderRadius.circular(25)),
           child: Center(
               child: Padding(
-                padding: const EdgeInsets.symmetric(vertical: 15),
-                child: Text(
-                  'Sign Up',
-                  style: TextStyle(
-                      color: Colors.white,
-                      fontWeight: FontWeight.bold,
-                      fontSize: 15),
-                ),
-              )),
+            padding: const EdgeInsets.symmetric(vertical: 15),
+            child: Text(
+              'Sign Up',
+              style: TextStyle(
+                  color: Colors.white,
+                  fontWeight: FontWeight.bold,
+                  fontSize: 15),
+            ),
+          )),
         ),
       ),
     );

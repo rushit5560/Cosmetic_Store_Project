@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class PageViewBuilder extends StatelessWidget {
-   final onBoardingController = Get.find<OnBoardingController>();
+  final onBoardingController = Get.find<OnBoardingController>();
 
   @override
   Widget build(BuildContext context) {
@@ -12,7 +12,7 @@ class PageViewBuilder extends StatelessWidget {
       controller: onBoardingController.pageController,
       onPageChanged: onBoardingController.selectedPageIndex,
       itemCount: onBoardingController.onBoardingPages.length,
-      itemBuilder: (context, index){
+      itemBuilder: (context, index) {
         return Container(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
@@ -58,7 +58,7 @@ class NextButton extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.end,
         children: [
           GestureDetector(
-            onTap: (){
+            onTap: () {
               print('Clicked On Next Button');
               onBoardingController.forwardAction();
             },
@@ -66,39 +66,43 @@ class NextButton extends StatelessWidget {
               // height: 40,
               decoration: BoxDecoration(
                   color: AppColors.kTometoColor,
-                  borderRadius: BorderRadius.circular(20)
-              ),
+                  borderRadius: BorderRadius.circular(20)),
               width: Get.width * 0.40,
-              child: Obx(()=> Center(
-                child: Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Text(
-                    onBoardingController.isLastPage ? 'Get Start' : 'Next',
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontWeight: FontWeight.bold,
-                      fontSize: 18,
+              child: Obx(() => Center(
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Text(
+                        onBoardingController.isLastPage ? 'Get Start' : 'Next',
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 18,
+                        ),
+                      ),
                     ),
-                  ),
-                ),
-              )),
+                  )),
             ),
           ),
           SizedBox(height: 5),
           Container(
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
-              children: List.generate(onBoardingController.onBoardingPages.length,
-                    (index) => Obx(() => Container(
-                  margin: EdgeInsets.all(4),
-                  width: 12,
-                  height: 12,
-                  decoration: BoxDecoration(
-                      color: onBoardingController.selectedPageIndex.value == index ? AppColors.kTometoColor : Colors.white,
-                      shape: BoxShape.circle
+              children: List.generate(
+                onBoardingController.onBoardingPages.length,
+                (index) => Obx(
+                  () => Container(
+                    margin: EdgeInsets.all(4),
+                    width: 12,
+                    height: 12,
+                    decoration: BoxDecoration(
+                        color: onBoardingController.selectedPageIndex.value ==
+                                index
+                            ? AppColors.kTometoColor
+                            : Colors.white,
+                        shape: BoxShape.circle),
                   ),
                 ),
-                ),),
+              ),
             ),
           ),
           SizedBox(height: 40),

@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class AllowNotification extends StatelessWidget {
-   final settingsScreenController = Get.find<SettingsScreenController>();
+  final settingsScreenController = Get.find<SettingsScreenController>();
 
   @override
   Widget build(BuildContext context) {
@@ -31,10 +31,9 @@ class AllowNotification extends StatelessWidget {
               Switch(
                 value: settingsScreenController.notificationValue.value,
                 onChanged: (value) {
-
                   settingsScreenController.notificationValue.value = value;
-                    print("notificationValue : ${settingsScreenController.notificationValue.value}");
-
+                  print(
+                      "notificationValue : ${settingsScreenController.notificationValue.value}");
                 },
                 activeTrackColor: AppColors.kTometoColor,
                 activeColor: AppColors.kCollection2,
@@ -119,8 +118,8 @@ class AllowEmails extends StatelessWidget {
                 value: settingsScreenController.emailsValue.value,
                 onChanged: (value) {
                   settingsScreenController.emailsValue.value = value;
-                    print("emailsValue : ${settingsScreenController.emailsValue.value}");
-
+                  print(
+                      "emailsValue : ${settingsScreenController.emailsValue.value}");
                 },
                 activeTrackColor: AppColors.kTometoColor,
                 activeColor: AppColors.kCollection2,
@@ -162,8 +161,8 @@ class DarkMode extends StatelessWidget {
                 value: settingsScreenController.darkModeValue.value,
                 onChanged: (value) {
                   settingsScreenController.darkModeValue.value = value;
-                    print("darkModeValue : ${settingsScreenController.darkModeValue.value}");
-
+                  print(
+                      "darkModeValue : ${settingsScreenController.darkModeValue.value}");
                 },
                 activeTrackColor: AppColors.kTometoColor,
                 activeColor: AppColors.kCollection2,
@@ -178,12 +177,11 @@ class DarkMode extends StatelessWidget {
 }
 
 class ChangePassword extends StatelessWidget {
-
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        Get.to(()=> ChangePasswordScreen());
+        Get.to(() => ChangePasswordScreen());
       },
       child: Padding(
         padding: const EdgeInsets.only(left: 15, right: 15, top: 10),

@@ -29,21 +29,21 @@ class ProfilePhotoModule extends StatelessWidget {
             ),
           ),
           Positioned(
-            bottom: -15, right: 20,
+            bottom: -15,
+            right: 20,
             child: Material(
               elevation: 8,
               color: Colors.transparent,
               borderRadius: BorderRadius.circular(30),
               child: Container(
-                width: 40, height: 40,
+                width: 40,
+                height: 40,
                 decoration: BoxDecoration(
-                    shape: BoxShape.circle,
-                    color: AppColors.kTometoColor
-                ),
+                    shape: BoxShape.circle, color: AppColors.kTometoColor),
                 child: Center(
                   child: IconButton(
                     onPressed: () {
-                      Get.to(()=> EditProfileScreen());
+                      Get.to(() => EditProfileScreen());
                     },
                     icon: Icon(Icons.edit),
                     color: Colors.white,
@@ -90,7 +90,6 @@ class UserDetailsModule extends StatelessWidget {
           ),
         ),
         SizedBox(height: 15),
-
         Container(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -115,7 +114,6 @@ class UserDetailsModule extends StatelessWidget {
           ),
         ),
         SizedBox(height: 15),
-
         Container(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -140,7 +138,6 @@ class UserDetailsModule extends StatelessWidget {
           ),
         ),
         SizedBox(height: 15),
-
         Container(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -165,7 +162,6 @@ class UserDetailsModule extends StatelessWidget {
           ),
         ),
         SizedBox(height: 15),
-
         Container(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -204,7 +200,7 @@ class MyCartModule extends StatelessWidget {
       padding: const EdgeInsets.symmetric(vertical: 5),
       child: GestureDetector(
         onTap: () {
-          Get.to(()=> CartScreen());
+          Get.to(() => CartScreen());
         },
         child: Text(
           'My Cart',
@@ -226,7 +222,7 @@ class MyOrderModule extends StatelessWidget {
       padding: const EdgeInsets.symmetric(vertical: 5),
       child: GestureDetector(
         onTap: () {
-          Get.to(()=> OrderScreen());
+          Get.to(() => OrderScreen());
         },
         child: Text(
           'My Order',
