@@ -6,6 +6,7 @@ class ApiUrl {
   static const BannerApi = ApiMainPath + 'api/banner';
   static const ProductApi = ApiMainPath + 'api/product';
   static const CategoryApi = ApiMainPath + 'api/category';
+  static const CategoryCollectionApi = ApiMainPath + 'api/categoryproduct';
   static const ProductDetailApi = ApiMainPath + 'api/productdetails';
   static const AddToCartApi = ApiMainPath + 'api/addtocart';
   static const UserCartApi = ApiMainPath + 'api/usercart';

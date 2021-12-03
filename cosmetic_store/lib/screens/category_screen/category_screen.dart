@@ -3,7 +3,7 @@ import 'package:cosmetic_store/common/app_color.dart';
 import 'package:cosmetic_store/common/common_widgets.dart';
 import 'package:cosmetic_store/controllers/category_screen_controller/category_screen_controller.dart';
 import 'package:cosmetic_store/screens/cart_screen/cart_screen.dart';
-import 'package:cosmetic_store/screens/collection_screen/collection_screen.dart';
+import 'package:cosmetic_store/screens/category_collection_screen/category_collection_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -27,6 +27,7 @@ class CategoryScreen extends StatelessWidget {
           ),
         ],
       ),
+
       body: Obx(
         () => categoryScreenController.isLoading.value
             ? CustomCircularProgressIndicator()
@@ -43,8 +44,12 @@ class CategoryScreen extends StatelessWidget {
                     padding: const EdgeInsets.all(5),
                     child: GestureDetector(
                       onTap: () {
-                        print('Clicked On Index Number : $index');
-                        Get.to(() => CollectionScreen());
+                        print('Cat Id : ${categoryScreenController.categoryLists[index].categoryId}');
+                        Get.to(() => CategoryCollectionScreen(),
+                            arguments: [
+                          categoryScreenController.categoryLists[index].categoryId,
+                          categoryScreenController.categoryLists[index].categoryName]
+                        );
                       },
                       child: Container(
                         decoration: BoxDecoration(
