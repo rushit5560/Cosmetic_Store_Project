@@ -1,10 +1,7 @@
-import 'dart:async';
-import 'package:cosmetic_store/common/app_color.dart';
 import 'package:cosmetic_store/common/common_widgets.dart';
 import 'package:cosmetic_store/controllers/contact_us_screen__controller/contact_us_screen__controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 import 'contactus_screen_widgets.dart';
 
