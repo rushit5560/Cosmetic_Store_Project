@@ -1,4 +1,3 @@
-import 'package:cosmetic_store/common/app_color.dart';
 import 'package:cosmetic_store/common/common_widgets.dart';
 import 'package:cosmetic_store/controllers/change_password_screen_controller/change_password_screen_controller.dart';
 import 'package:flutter/material.dart';
