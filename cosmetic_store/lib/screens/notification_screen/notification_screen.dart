@@ -1,60 +1,10 @@
-import 'package:cosmetic_store/common/app_images.dart';
-import 'package:cosmetic_store/models/notification_screen_model/notification_model.dart';
+import 'package:cosmetic_store/controllers/notification_screen_controller/notification_screen_controller.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart'; 
+import 'notification_screen_widgets.dart';
 
 class NotificationScreen extends StatelessWidget {
-  List<NotificationInfo> notificationItems = [
-    NotificationInfo(
-      img: AppImages.noti2,
-      title: 'Special Offers For You',
-      description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse posuere ac urna sit amet pulvinar.',
-    ),
-    NotificationInfo(
-      img: AppImages.noti1,
-      title: 'Your Order will be received',
-      description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse posuere ac urna sit amet pulvinar.',
-    ),
-    NotificationInfo(
-      img: AppImages.noti2,
-      title: 'Special Offers For You',
-      description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse posuere ac urna sit amet pulvinar.',
-    ),
-    NotificationInfo(
-      img: AppImages.noti1,
-      title: 'Your Order will be received',
-      description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse posuere ac urna sit amet pulvinar.',
-    ),
-    NotificationInfo(
-      img: AppImages.noti2,
-      title: 'Special Offers For You',
-      description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse posuere ac urna sit amet pulvinar.',
-    ),
-    NotificationInfo(
-      img: AppImages.noti1,
-      title: 'Your Order will be received',
-      description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse posuere ac urna sit amet pulvinar.',
-    ),
-    NotificationInfo(
-      img: AppImages.noti2,
-      title: 'Special Offers For You',
-      description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse posuere ac urna sit amet pulvinar.',
-    ),
-    NotificationInfo(
-      img: AppImages.noti1,
-      title: 'Your Order will be received',
-      description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse posuere ac urna sit amet pulvinar.',
-    ),
-    NotificationInfo(
-      img: AppImages.noti2,
-      title: 'Special Offers For You',
-      description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse posuere ac urna sit amet pulvinar.',
-    ),
-    NotificationInfo(
-      img: AppImages.noti1,
-      title: 'Your Order will be received',
-      description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse posuere ac urna sit amet pulvinar.',
-    ),
-  ];
+  final notificationScreenController = Get.put(NotificationScreenController());
 
   @override
   Widget build(BuildContext context) {
@@ -65,52 +15,7 @@ class NotificationScreen extends StatelessWidget {
         ),
       ),
 
-      body: ListView.builder(
-        itemCount: notificationItems.length,
-        physics: BouncingScrollPhysics(),
-        itemBuilder: (context, index) {
-          return Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Row(
-              children: [
-                Container(
-                  height: 60, width: 60,
-                  decoration: BoxDecoration(
-                    shape: BoxShape.circle,
-                    image: DecorationImage(
-                      image: AssetImage(notificationItems[index].img),
-                      fit: BoxFit.cover,
-                    )
-                  ),
-                ),
-                SizedBox(width: 10),
-                Expanded(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        notificationItems[index].title,
-                        maxLines: 1,
-                        overflow: TextOverflow.ellipsis,
-                        style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          fontSize: 18
-                        ),
-                      ),
-                      SizedBox(height: 3),
-                      Text(
-                        notificationItems[index].description,
-                        maxLines: 2,
-                        overflow: TextOverflow.ellipsis,
-                      )
-                    ],
-                  ),
-                ),
-              ],
-            ),
-          );
-        },
-      ),
+      body: NotificationList(),
     );
   }
 }
